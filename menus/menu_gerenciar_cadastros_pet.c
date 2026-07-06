@@ -40,7 +40,7 @@ static void imprimirMenu(void);
 static void executarOpcaoMenu(char opcao);
 
 
-extern void MenuPrincipal(void)
+extern void MenuGerenciarCadastrosPet(void)
 {
     char opcao;
 
@@ -61,7 +61,8 @@ static void imprimirMenu(void)
     printf("1 - Cadastrar Pet\n");
     printf("2 - Remover Pet\n");
     printf("3 - Atualizar Pet\n");
-    printf("4 - Voltar\n");
+    printf("4 - Listar Pets\n");
+    printf("5 - Voltar\n");
 }
 static void executarOpcaoMenu(char opcao)
 {
@@ -81,6 +82,10 @@ static void executarOpcaoMenu(char opcao)
             break;
 
         case '4':
+            ListarPets();
+            break;
+
+        case '5':
             break;
 
         default:
