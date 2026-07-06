@@ -97,8 +97,82 @@ int ExcluirPet(int id) {
   }
 }
 
-int EditarPet(int id);
+int EditarPet(int id) {
+  FILE *arquivo = fopen(ARQUIVO_PETS, "r+b");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    return 0;
+  }
 
+  Pet p;
+  int encontrado = 0;
+  long posicao;
+
+  while (fread(&p, sizeof(Pet), 1, arquivo) == 1) {
+    if (p.id == id) {
+      encontrado = 1;
+      posicao = ftell(arquivo) - sizeof(Pet);
+
+      printf("---- EDITAR PET (ID: %d) ----\n", p.id);
+      printf("Nome atual: %s\n", p.nome);
+      printf("Idade atual: %d\n", p.idade);
+      printf("Peso atual: %.2f\n", p.peso);
+      printf("ID do Cliente atual: %d\n", p.id_Cliente);
+
+      int opcao;
+      do {
+        printf("\nO que deseja alterar?\n");
+        printf("1 - Nome\n");
+        printf("2 - Idade\n");
+        printf("3 - Peso\n");
+        printf("4 - ID do Cliente\n");
+        printf("0 - Finalizar edição\n");
+        printf("Escolha: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+        case 1:
+          printf("Novo nome: ");
+          scanf("%s", p.nome);
+          break;
+        case 2:
+          printf("Nova idade: ");
+          scanf("%d", &p.idade);
+          break;
+        case 3:
+          printf("Novo peso: ");
+          scanf("%f", &p.peso);
+          break;
+        case 4:
+          printf("Novo ID do Cliente: ");
+          scanf("%d", &p.id_Cliente);
+          break;
+        case 0:
+          printf("Finalizando edição...\n");
+          break;
+        default:
+          printf("Opção inválida!\n");
+          break;
+        }
+      } while (opcao != 0);
+
+      // Sobrescreve o registro no mesmo lugar
+      fseek(arquivo, posicao, SEEK_SET);
+      fwrite(&p, sizeof(Pet), 1, arquivo);
+      break;
+    }
+  }
+
+  fclose(arquivo);
+
+  if (encontrado) {
+    printf("Pet editado com sucesso!\n");
+    return 1;
+  } else {
+    printf("Pet com ID %d não encontrado.\n", id);
+    return 0;
+  }
+}
 int ListarTodosPets();
 
 int BuscarPetPorId(int id);
