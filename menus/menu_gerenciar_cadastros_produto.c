@@ -68,15 +68,15 @@ static void executarOpcaoMenu(char opcao)
     switch(opcao)
     {
         case '1':
-            cadastrarProduto();
+            CadastrarProduto();
             break;
 
         case '2':
-            removerProduto();
+            ExcluirProduto();
             break;
 
         case '3':
-            atualizarProduto();
+            EditarProduto();
             break;
 
         case '4':

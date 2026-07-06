@@ -69,15 +69,15 @@ static void executarOpcaoMenu(char opcao)
     switch (opcao)
     {
         case '1':
-            cadastrarVeterinario();
+            CadastrarVeterinario();
             break;
 
         case '2':
-            removerVeterinario();
+            ExcluirVeterinario();
             break;
 
         case '3':
-            atualizarVeterinario();
+            EditarVeterinario();
             break;
 
         case '4':
