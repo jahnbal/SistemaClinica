@@ -66,21 +66,19 @@ static void executarOpcaoMenu(char opcao)
     switch(opcao)
     {
         case '1':
-        //    BUSCAR PET
-            printf("Voce escolheu a opcao 1");
+            BuscarPetPorId();
             break;
 
         case '2':
-        //    BUSCAR VETERINARIO
+            BuscarVeterinarioPorId();
             break;
 
         case '3':
-        //    BUSCAR PRODUTO
-            printf("Voce escolheu a opcao 3");
+            BuscarProdutoPorId();
             break;
 
         case '4':
-            printf("\nEncerrando sistema...\n");
+            printf("\nEncErrando sistema...\n");
             break;
 
         default:
