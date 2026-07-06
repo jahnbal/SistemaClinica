@@ -61,7 +61,8 @@ static void imprimirMenu(void)
     printf("1 - Cadastrar Veterinario\n");
     printf("2 - Remover Veterinario\n");
     printf("3 - Atualizar Veterinario\n");
-    printf("4 - Voltar\n");
+    printf("4 - Listar Veterinarios\n");
+    printf("5 - Voltar\n");
 }
 static void executarOpcaoMenu(char opcao)
 {
@@ -81,7 +82,11 @@ static void executarOpcaoMenu(char opcao)
             break;
 
         case '4':
-        break;
+            ListarVeterinarios();
+            break;
+
+        case '5':
+            break;
 
         default:
         printf("\nOpcao invalida.\n");
