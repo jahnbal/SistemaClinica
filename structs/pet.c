@@ -18,56 +18,87 @@ typedef struct {
 
 #define ARQUIVO_PETS "pets.dat"
 
-static void preencherPet(Pet *p)
-{
-    printf("---- NOVO PET ----\n");
-    printf("ID: ");
-    scanf("%d", &p->id);
+static void preencherPet(Pet *p) {
+  printf("---- NOVO PET ----\n");
+  printf("ID: ");
+  scanf("%d", &p->id);
 
-    printf("Nome: ");
-    scanf("%s", p->nome);
+  printf("Nome: ");
+  scanf("%s", p->nome);
 
-    printf("Idade: ");
-    scanf("%d", &p->idade);
+  printf("Idade: ");
+  scanf("%d", &p->idade);
 
-    printf("Peso: ");
-    scanf("%f", &p->peso);
+  printf("Peso: ");
+  scanf("%f", &p->peso);
 
-    printf("ID do Cliente: ");
-    scanf("%d", &p->id_Cliente);
+  printf("ID do Cliente: ");
+  scanf("%d", &p->id_Cliente);
 }
 
+static int salvarPet(Pet *p) {
+  FILE *arquivo = fopen(ARQUIVO_PETS, "ab");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    return 0;
+  }
 
+  fwrite(p, sizeof(Pet), 1, arquivo);
+  fclose(arquivo);
+  printf("Pet salvo com sucesso!\n");
+  return 1;
+}
 
-static int salvarPet(Pet *p)
-{
-    FILE *arquivo = fopen(ARQUIVO_PETS, "ab");
-    if (arquivo == NULL) {
-        perror("[Erro] Arquivo não pode ser aberto.\n");
-        return 0;
-    }
+void CadastrarPet() {
+  Pet p;
+  preencherPet(&p);
+  salvarPet(&p);
+}
 
-    fwrite(p, sizeof(Pet), 1, arquivo);
+int ExcluirPet(int id) {
+  FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    return 0;
+  }
+
+  FILE *temp = fopen("temp.dat", "wb");
+  if (temp == NULL) {
+    perror("[Erro] Não foi possível criar arquivo temporário.\n");
     fclose(arquivo);
-    printf("Pet salvo com sucesso!\n");
+    return 0;
+  }
+
+  Pet p;
+  int encontrado = 0;
+
+  while (fread(&p, sizeof(Pet), 1, arquivo) == 1) {
+    if (p.id == id) {
+      encontrado =
+          1; // não copia esse pet para o temp (ou seja, ele é "excluído")
+      continue;
+    }
+    fwrite(&p, sizeof(Pet), 1, temp);
+  }
+
+  fclose(arquivo);
+  fclose(temp);
+
+  remove(ARQUIVO_PETS); // apaga o arquivo original
+  rename("temp.dat",
+         ARQUIVO_PETS); // renomeia o temporário para o nome original
+
+  if (encontrado) {
+    printf("Pet removido com sucesso!\n");
     return 1;
+  } else {
+    printf("Pet com ID %d não encontrado.\n", id);
+    return 0;
+  }
 }
-
-
-void CadastrarPet()
-{
-    Pet p;
-    preencherPet(&p);
-    salvarPet(&p);
-} 
-
-void ExcluirPet(int id)
-{
-    
-} 
 
 int EditarPet(int id);
 
-int ListarTodosPets(); 
+int ListarTodosPets();
 
 int BuscarPetPorId(int id);

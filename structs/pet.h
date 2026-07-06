@@ -3,7 +3,6 @@ Cadastra/Exclui/Edita/Lista/Pesquisa
 
 */
 
-
 typedef struct {
 
   char nome[30];
@@ -14,12 +13,12 @@ typedef struct {
 
 } Pet;
 
-void CadastrarPet(); 
+void CadastrarPet();
 
-void ExcluirPet(int id); 
+int ExcluirPet(int id);
 
 int EditarPet(int id);
 
-int ListarTodosPets(); 
+int ListarTodosPets();
 
 int BuscarPetPorId(int id);
