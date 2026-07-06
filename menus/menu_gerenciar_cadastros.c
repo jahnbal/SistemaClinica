@@ -72,7 +72,7 @@ static void executarOpcaoMenu(char opcao)
             break;
             
         case '3':
-        //    MenuGerenciarCadastrosVeterinario();
+            MenuGerenciarCadastrosVeterinario();
             break;
             
         case '4':
