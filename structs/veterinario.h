@@ -25,6 +25,6 @@ int ExcluirVeterinario(int id);
 
 int EditarVeterinario(int id);
 
-int ListarTodosVeterinarios(); 
+int ListarVeterinarios(); 
 
 int BuscarVeterinarioPorId(int id);

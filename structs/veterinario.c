@@ -77,10 +77,128 @@ int ExcluirVeterinario(int id) {
   }
 }
 
+int EditarVeterinario(int id) {
+  FILE *arquivo = fopen(ARQUIVO_VETS, "r+b");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    return 0;
+  }
 
+  Veterinario v;
+  int encontrado = 0;
+  long posicao;
 
-int EditarVeterinario(int id);
+  while (fread(&v, sizeof(Veterinario), 1, arquivo) == 1) {
+    if (v.id == id) {
+      encontrado = 1;
+      posicao = ftell(arquivo) - sizeof(Veterinario);
 
-int ListarTodosVeterinarios(); 
+      printf("---- EDITAR VETERINÁRIO (ID: %d) ----\n", v.id);
+      printf("Nome atual: %s\n", v.nome);
+      printf("ID atual: %d\n", v.id);
 
-int BuscarVeterinarioPorId(int id);
+      int opcao;
+      do {
+        printf("\nO que deseja alterar?\n");
+        printf("1 - Nome\n");
+        printf("2 - ID\n");
+        printf("0 - Finalizar edição\n");
+        printf("Escolha: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+        case 1:
+          printf("Novo nome: ");
+          scanf("%s", v.nome);
+          break;
+        case 2:
+          printf("Novo ID: ");
+          scanf("%d", &v.id);
+          break;
+        case 0:
+          printf("Finalizando edição...\n");
+          break;
+        default:
+          printf("Opção inválida!\n");
+          break;
+        }
+      } while (opcao != 0);
+
+      // Sobrescreve o registro no mesmo lugar
+      fseek(arquivo, posicao, SEEK_SET);
+      fwrite(&v, sizeof(Veterinario), 1, arquivo);
+      break;
+    }
+  }
+
+  fclose(arquivo);
+
+  if (encontrado) {
+    printf("Veterinário editado com sucesso!\n");
+    return 1;
+  } else {
+    printf("Veterinário com ID %d não encontrado.\n", id);
+    return 0;
+  }
+}
+
+int ListarVeterinarios() {
+  FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    return 0;
+  }
+
+  Veterinario v;
+  int contador = 0;
+
+  printf("\n---- LISTA DE VETERINÁRIOS ----\n");
+
+  while (fread(&v, sizeof(Veterinario), 1, arquivo) == 1) {
+    contador++;
+    printf("\nID: %d\n", v.id);
+    printf("Nome: %s\n", v.nome);
+    printf("------------------------\n");
+  }
+
+  fclose(arquivo);
+
+  if (contador == 0) {
+    printf("Nenhum veterinário cadastrado.\n");
+    return 0;
+  }
+
+  printf("Total de veterinários: %d\n", contador);
+  return contador;
+}
+
+int BuscarVeterinarioPorId(int id) {
+  FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    return 0;
+  }
+
+  Veterinario v;
+  int encontrado = 0;
+
+  while (fread(&v, sizeof(Veterinario), 1, arquivo) == 1) {
+    if (v.id == id) {
+      encontrado = 1;
+      printf("\n---- VETERINÁRIO ENCONTRADO ----\n");
+      printf("ID: %d\n", v.id);
+      printf("Nome: %s\n", v.nome);
+      printf("-------------------------\n");
+      break;
+    }
+  }
+
+  fclose(arquivo);
+
+  if (!encontrado) {
+    printf("Veterinário com ID %d não encontrado.\n", id);
+    return 0;
+  }
+
+  return 1;
+}
