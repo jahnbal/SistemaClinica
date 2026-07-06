@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "../utils/utilidades.h"
 #include "menu_gerenciar_cadastros.h"
+#include "menu_gerenciar_cadastros_pet.h"
+#include "menu_gerenciar_cadastros_produto.h"
+#include "menu_gerenciar_cadastros_veterinario.h"
 
 /*
 

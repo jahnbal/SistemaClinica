@@ -3,6 +3,7 @@
 #include "menu_atendimento.h"
 #include "menu_gerenciar_cadastros.h"
 #include "../utils/utilidades.h"
+#include "menu_buscar.h"
 
 /*
 

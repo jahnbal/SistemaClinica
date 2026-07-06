@@ -14,12 +14,7 @@ typedef struct {
 
 
 
-void CadastrarVeterinario()
-{
-    Veterinario v;
-    preencherVeterinario(&v);
-    salvarVeterinario(&v);
-}
+void CadastrarVeterinario();
 
 int ExcluirVeterinario(int id); 
 

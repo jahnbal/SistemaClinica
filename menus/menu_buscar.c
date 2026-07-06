@@ -3,6 +3,9 @@
 #include "menu_atendimento.h"
 #include "menu_gerenciar_cadastros.h"
 #include "../utils/utilidades.h"
+#include "../structs/pet.h"
+#include "../structs/veterinario.h"
+#include "../structs/produto.h"
 
 /*
 

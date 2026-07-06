@@ -3,6 +3,7 @@
 #include "menu_atendimento.h"
 #include "menu_gerenciar_cadastros.h"
 #include "../utils/utilidades.h"
+#include "../structs/veterinario.h"
 
 /*
 
@@ -40,7 +41,7 @@ static void imprimirMenu(void);
 static void executarOpcaoMenu(char opcao);
 
 
-extern void MenuPrincipal(void)
+extern void MenuGerenciarCadastrosVeterinario(void)
 {
     char opcao;
 
