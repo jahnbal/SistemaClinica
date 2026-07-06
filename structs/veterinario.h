@@ -21,7 +21,7 @@ void CadastrarVeterinario()
     salvarVeterinario(&v);
 }
 
-void ExcluirVeterinario(int id); 
+int ExcluirVeterinario(int id); 
 
 int EditarVeterinario(int id);
 

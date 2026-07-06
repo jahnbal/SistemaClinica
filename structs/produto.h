@@ -20,7 +20,7 @@ typedef struct {
 
 void CadastrarProduto(); 
 
-void ExcluirProduto(int id); 
+int ExcluirProduto(int id); 
 
 int EditarProduto(int id);
 
