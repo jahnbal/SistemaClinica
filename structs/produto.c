@@ -32,8 +32,6 @@ static void preencherProduto(Produto *p) {
 
   printf("Quantidade: ");
   scanf("%d", &p->quantidade);
-
-  p->ativo = 1;
 }
 
 static int salvarProduto(Produto *p) {
