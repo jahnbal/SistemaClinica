@@ -1,0 +1,1 @@
+extern void MenuGerenciarCadastrosProduto(void);
