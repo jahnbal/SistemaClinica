@@ -173,6 +173,70 @@ int EditarPet(int id) {
     return 0;
   }
 }
-int ListarTodosPets();
 
-int BuscarPetPorId(int id);
+int ListarPets() {
+  FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    return 0;
+  }
+
+  Pet p;
+  int contador = 0;
+
+  printf("\n---- LISTA DE PETS ----\n");
+
+  while (fread(&p, sizeof(Pet), 1, arquivo) == 1) {
+    contador++;
+    printf("\nID: %d\n", p.id);
+    printf("Nome: %s\n", p.nome);
+    printf("Idade: %d\n", p.idade);
+    printf("Peso: %.2f\n", p.peso);
+    printf("ID do Cliente: %d\n", p.id_Cliente);
+    printf("------------------------\n");
+  }
+
+  fclose(arquivo);
+
+  if (contador == 0) {
+    printf("Nenhum pet cadastrado.\n");
+    return 0;
+  }
+
+  printf("Total de pets: %d\n", contador);
+  return contador;
+}
+
+int BuscarPetPorId(int id) {
+  FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    return 0;
+  }
+
+  Pet p;
+  int encontrado = 0;
+
+  while (fread(&p, sizeof(Pet), 1, arquivo) == 1) {
+    if (p.id == id) {
+      encontrado = 1;
+      printf("\n---- PET ENCONTRADO ----\n");
+      printf("ID: %d\n", p.id);
+      printf("Nome: %s\n", p.nome);
+      printf("Idade: %d\n", p.idade);
+      printf("Peso: %.2f\n", p.peso);
+      printf("ID do Cliente: %d\n", p.id_Cliente);
+      printf("-------------------------\n");
+      break;
+    }
+  }
+
+  fclose(arquivo);
+
+  if (!encontrado) {
+    printf("Pet com ID %d não encontrado.\n", id);
+    return 0;
+  }
+
+  return 1;
+}

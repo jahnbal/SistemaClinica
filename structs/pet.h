@@ -19,6 +19,6 @@ int ExcluirPet(int id);
 
 int EditarPet(int id);
 
-int ListarTodosPets();
+int ListarPets();
 
 int BuscarPetPorId(int id);
