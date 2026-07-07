@@ -90,7 +90,7 @@ int SalvaRegistroVenda(RegistroVenda *venda, FILE *arq_vendas);
  * [LP2 — Matriz Dinâmica]
  * Lê todos os registros de vendas e exibe um relatório em formato de
  * tabela usando uma matriz alocada dinamicamente (linhas × colunas).
- * Colunas: [ID venda | ID pet | ID cliente | Qtd itens | Total | Troco]
+ * Colunas: [ID venda | Qtd itens | Total | Troco]
  */
 void GerarRelatorioVendas(FILE *arq_vendas);
 
