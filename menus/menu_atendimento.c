@@ -78,6 +78,7 @@ static void executarOpcao(char opcao)
 
         default:
             printf("Opcao invalidada.\n");
+            pausar();
             break;
     }
 }

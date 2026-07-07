@@ -50,7 +50,7 @@ extern void MenuGerenciarCadastrosPet(void)
         imprimirPrompt();
         opcao = getOpcao();
         executarOpcaoMenu(opcao);
-    } while(opcao != '4');
+    } while(opcao != '5');
 }
 
 static void imprimirMenu(void)
@@ -94,6 +94,7 @@ static void executarOpcaoMenu(char opcao)
 
         default:
             printf("\nOpcao invalida.\n");
+            pausar();
     }
     
 }

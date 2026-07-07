@@ -85,7 +85,6 @@ static void executarOpcaoMenu(char opcao)
             break;
 
         case '4':
-            printf("\nEncErrando sistema...\n");
             break;
 
         default:

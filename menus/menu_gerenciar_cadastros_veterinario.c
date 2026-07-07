@@ -92,7 +92,8 @@ static void executarOpcaoMenu(char opcao)
             break;
 
         default:
-        printf("\nOpcao invalida.\n");
+            printf("\nOpcao invalida.\n");
+            pausar();
     }
 }
 
