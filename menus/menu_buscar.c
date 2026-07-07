@@ -66,18 +66,22 @@ static void imprimirMenu(void)
 }
 static void executarOpcaoMenu(char opcao)
 {
+    int id;
     switch(opcao)
     {
         case '1':
-            BuscarPetPorId();
+            id = pedirId();
+            BuscarPetPorId(id);
             break;
 
         case '2':
-            BuscarVeterinarioPorId();
+            id = pedirId();
+            BuscarVeterinarioPorId(id);
             break;
 
         case '3':
-            BuscarProdutoPorId();
+            id = pedirId();
+            BuscarProdutoPorId(id);
             break;
 
         case '4':

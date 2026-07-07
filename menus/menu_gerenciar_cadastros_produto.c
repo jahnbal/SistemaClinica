@@ -1,5 +1,5 @@
 #include "menu_gerenciar_cadastros_produto.h"
-#include "../structs/produto.c"
+#include "../structs/produto.h"
 #include "../utils/utilidades.h"
 #include <stdio.h>
 
