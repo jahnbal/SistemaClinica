@@ -113,7 +113,7 @@ int EditarVeterinario(int id) {
         printf("2 - ID\n");
         printf("0 - Finalizar edição\n");
         printf("Escolha: ");
-        opcao = getOpcao;
+        opcao = getOpcao();
 
         switch (opcao) {
         case '1':
@@ -122,7 +122,7 @@ int EditarVeterinario(int id) {
           break;
         case '2':
           printf("Novo ID: ");
-          v.id = lerInteiro;
+          v.id = lerInteiro();
           break;
         case '0':
           printf("Finalizando edição...\n");
