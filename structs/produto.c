@@ -1,4 +1,5 @@
 #include "produto.h"
+#include "../utils/utilidades.h"
 #include <stdio.h>
 
 /*
@@ -217,6 +218,7 @@ int BuscarProdutoPorId(int id) {
       printf("Preço: %.2f\n", p.preco);
       printf("Quantidade: %d\n", p.quantidade);
       printf("-----------------------------\n");
+      pausar();
       break;
     }
   }
@@ -225,6 +227,7 @@ int BuscarProdutoPorId(int id) {
 
   if (!encontrado) {
     printf("Produto com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 

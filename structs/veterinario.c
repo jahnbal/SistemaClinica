@@ -1,4 +1,5 @@
 #include "veterinario.h"
+#include "../utils/utilidades.h"
 #define ARQUIVO_VETS "veterinarios.dat"
 
 static void preencherVeterinario(Veterinario *v)
@@ -189,6 +190,7 @@ int BuscarVeterinarioPorId(int id) {
       printf("ID: %d\n", v.id);
       printf("Nome: %s\n", v.nome);
       printf("-------------------------\n");
+      pausar();
       break;
     }
   }
@@ -197,6 +199,7 @@ int BuscarVeterinarioPorId(int id) {
 
   if (!encontrado) {
     printf("Veterinário com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 

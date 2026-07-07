@@ -1,4 +1,5 @@
 #include "pet.h"
+#include "../utils/utilidades.h"
 #include <stdio.h>
 
 /*
@@ -227,6 +228,7 @@ int BuscarPetPorId(int id) {
       printf("Peso: %.2f\n", p.peso);
       printf("ID do Cliente: %d\n", p.id_Cliente);
       printf("-------------------------\n");
+      pausar();
       break;
     }
   }
@@ -235,6 +237,7 @@ int BuscarPetPorId(int id) {
 
   if (!encontrado) {
     printf("Pet com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 
