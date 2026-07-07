@@ -47,7 +47,7 @@ extern void MenuGerenciarCadastrosProduto(void) {
     imprimirPrompt();
     opcao = getOpcao();
     executarOpcaoMenu(opcao);
-  } while (opcao != '4');
+  } while (opcao != '5');
 }
 
 static void imprimirMenu(void) {

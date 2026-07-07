@@ -47,7 +47,7 @@ extern void MenuAtendimento(void)
         imprimirPrompt();
         opcao = getOpcao();
         executarOpcao(opcao);
-    } while(opcao != '4');
+    } while(opcao != '3');
 }
 
 static void imprimirMenu(void)
