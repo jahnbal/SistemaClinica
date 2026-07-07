@@ -106,25 +106,25 @@ int EditarVeterinario(int id) {
       printf("Nome atual: %s\n", v.nome);
       printf("ID atual: %d\n", v.id);
 
-      int opcao;
+      char opcao;
       do {
         printf("\nO que deseja alterar?\n");
         printf("1 - Nome\n");
         printf("2 - ID\n");
         printf("0 - Finalizar edição\n");
         printf("Escolha: ");
-        scanf("%d", &opcao);
+        opcao = getOpcao;
 
         switch (opcao) {
-        case 1:
+        case '1':
           printf("Novo nome: ");
-          scanf("%s", v.nome);
+          lerString(v.nome, sizeof(v.nome));
           break;
-        case 2:
+        case '2':
           printf("Novo ID: ");
-          scanf("%d", &v.id);
+          v.id = lerInteiro;
           break;
-        case 0:
+        case '0':
           printf("Finalizando edição...\n");
           break;
         default:
@@ -144,9 +144,11 @@ int EditarVeterinario(int id) {
 
   if (encontrado) {
     printf("Veterinário editado com sucesso!\n");
+    pausar();
     return 1;
   } else {
     printf("Veterinário com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 }

@@ -126,7 +126,7 @@ int EditarProduto(int id) {
       printf("Preço atual: %.2f\n", p.preco);
       printf("Quantidade atual: %d\n", p.quantidade);
 
-      int opcao;
+      char opcao;
       do {
         printf("\nO que deseja alterar?\n");
         printf("1 - Nome\n");
@@ -134,23 +134,23 @@ int EditarProduto(int id) {
         printf("3 - Quantidade\n");
         printf("0 - Finalizar edição\n");
         printf("Escolha: ");
-        scanf("%d", &opcao);
+        opcao = getOpcao();
 
         switch (opcao) {
-        case 1:
+        case '1':
           printf("Novo nome: ");
-          scanf("%s", p.nome);
+          lerString(p.nome, sizeof(p.nome));
           break;
-        case 2:
+        case '2':
           printf("Novo preço: ");
-          scanf("%f", &p.preco);
+          p.preco = lerFloat();
           break;
-        case 3:
+        case '3':
           printf("Nova quantidade: ");
-          scanf("%d", &p.quantidade);
+          p.quantidade = lerInteiro();
           break;
-        case 0:
-          printf("Finalizando edição...\n");
+        case '0':
+          printf("\nFinalizando edição...\n");
           break;
         default:
           printf("Opção inválida!\n");
@@ -168,9 +168,11 @@ int EditarProduto(int id) {
 
   if (encontrado) {
     printf("Produto editado com sucesso!\n");
+    pausar();
     return 1;
   } else {
     printf("Produto com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 }
