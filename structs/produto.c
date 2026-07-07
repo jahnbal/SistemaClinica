@@ -18,7 +18,6 @@ typedef struct {
 // Agente ta literalmente só cadastradando e alterando
 }
 */
-#define ARQUIVO_PRODS "produtos.dat"
 
 static void preencherProduto(Produto *p) {
   printf("---- NOVO PRODUTO ----\n");
