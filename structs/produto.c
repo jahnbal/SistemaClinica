@@ -26,7 +26,6 @@ static void preencherProduto(Produto *p) {
 
   printf("Nome: ");
   lerString(p->nome, sizeof(p->nome));
-  
 
   printf("Preço: ");
   p->preco = lerFloat();
