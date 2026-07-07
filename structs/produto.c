@@ -46,6 +46,7 @@ static int salvarProduto(Produto *p) {
   fwrite(p, sizeof(Produto), 1, arquivo);
   fclose(arquivo);
   printf("Produto salvo com sucesso!\n");
+  pausar();
   return 1;
 }
 
@@ -54,6 +55,7 @@ void CadastrarProduto() {
 
   preencherProduto(&p);
   salvarProduto(&p);
+  limparBuffer();
 }
 
 int ExcluirProduto(int id) {

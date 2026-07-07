@@ -47,6 +47,7 @@ static int salvarPet(Pet *p) {
   fwrite(p, sizeof(Pet), 1, arquivo);
   fclose(arquivo);
   printf("Pet salvo com sucesso!\n");
+  pausar();
   return 1;
 }
 
@@ -54,6 +55,7 @@ void CadastrarPet() {
   Pet p;
   preencherPet(&p);
   salvarPet(&p);
+  limparBuffer();
 }
 
 int ExcluirPet(int id) {

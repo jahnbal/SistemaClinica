@@ -26,6 +26,7 @@ static int salvarVeterinario(Veterinario *v)
     fwrite(v, sizeof(Veterinario), 1, arquivo);
     fclose(arquivo);
     printf("Veterinário salvo com sucesso!\n");
+    pausar();
     return 1;
 }
 
@@ -35,6 +36,7 @@ void CadastrarVeterinario()
     Veterinario v;
     preencherVeterinario(&v);
     salvarVeterinario(&v);
+    limparBuffer();
 }
 
 int ExcluirVeterinario(int id) {
