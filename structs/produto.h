@@ -5,6 +5,7 @@ Cadastra/Exclui/Edita/Lista/Pesquisa
 */
 
 #define TAM_NOME_PRODUTO 30
+#define ARQUIVO_PRODS "produtos.dat"
 
 typedef struct {
 
