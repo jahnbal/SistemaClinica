@@ -10,11 +10,11 @@ typedef void (*FuncExibeProduto)(Produto *produto);
 
 // Cada item do carrinho é um nó da lista encadeada
 typedef struct ItemCarrinho {
-  int id_produto;
+  int id_produto; // struct 
   char nome_produto[TAM_NOME_PRODUTO];
   float preco_unitario;
   int quantidade;
-  float total_item;
+  float total_item; // preco total que aquele item contribui
   struct ItemCarrinho *proximo; /* próximo nó da lista encadeada */
 } ItemCarrinho;
 

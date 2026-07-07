@@ -54,10 +54,10 @@ static void imprimirMenu(void)
 {
     limparTela();
     printf("\n=============================\n");
-    printf("    REALIZAR ATENDIMENTO\n");
+    printf("        VENDA\n");
     printf("=============================\n");
-    printf("1 - Consultas\n");
-    printf("2 - Venda\n");
+    printf("1 - Adicionar Produto ao Carrinho\n");
+    printf("2 - Finalizar Compra\n");
     printf("3 - Voltar\n");
 }
 static void executarOpcao(char opcao)
@@ -65,12 +65,11 @@ static void executarOpcao(char opcao)
     switch(opcao)
     {
         case '1':
-            MenuConsultas();
-            printf("Voce selecionou a opcao 1\n");
+            // AdicionarProduto ao carrinho
             break;
 
         case '2':
-            MenuVenda();
+            // Finalizar Compra
             break;
 
         case '3':
