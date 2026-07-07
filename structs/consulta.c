@@ -21,7 +21,10 @@ void PreencheDadosConsulta(Consulta *nova) {
   scanf("%d", &(nova->horario));
 }
 
-void InicializarLista(ListaConsulta *lista) {
+void InicializarLista() {
+
+  ListaConsulta *lista = malloc(sizeof(ListaConsulta));
+
   lista->inicio = NULL;
   lista->tamanho = 0;
 }
