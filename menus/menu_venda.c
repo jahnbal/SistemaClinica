@@ -38,7 +38,7 @@ static void imprimirMenu(void);
 static void executarOpcao(char opcao);
 
 
-extern void MenuRealizarAtendimento(void)
+extern void MenuVenda(void)
 {
     char opcao;
 
@@ -65,12 +65,12 @@ static void executarOpcao(char opcao)
     switch(opcao)
     {
         case '1':
-        //    MenuConsultas();
+            MenuConsultas();
             printf("Voce selecionou a opcao 1\n");
             break;
 
         case '2':
-            printf("Voce selecinou a opcao 2\n");
+            MenuVenda();
             break;
 
         case '3':

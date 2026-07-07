@@ -41,7 +41,7 @@ static void imprimirMenu(void);
 static void executarOpcaoMenu(char opcao);
 
 
-extern void MenuPrincipal(void)
+extern void MenuConsultas(void)
 {
     char opcao;
 
@@ -50,40 +50,41 @@ extern void MenuPrincipal(void)
         imprimirPrompt();
         opcao = getOpcao();
         executarOpcaoMenu(opcao);
-    } while(opcao != '4');
+    } while(opcao != '6');
 }
 
 static void imprimirMenu(void)
 {
     limparTela();
-    printf("\n========================================\n");
-    printf(" SISTEMA CLINICA VETERINARIA\n");
-    printf("========================================\n");
-
-    printf("1 - Realizar Atendimento\n");
-    printf("2 - Gerenciar Cadastros\n");
-    printf("3 - Busca\n");
-    printf("4 - Sair\n");
+    printf("\n=============================\n");
+    printf("          CONSULTAS\n");
+    printf("=============================\n");
+    printf("1 - Agendar Consulta\n");
+    printf("2 - Realizar Consulta\n");
+    printf("3 - Cancelar Consulta\n");
+    printf("4 - Listar Consultas\n");
+    printf("5 - Voltar\n");
 }
 static void executarOpcaoMenu(char opcao)
 {
     switch(opcao)
     {
         case '1':
-            MenuRealizarAtendimento();
+            // Agendar Consulta
             break;
 
         case '2':
-            MenuGerenciarCadastros();
+            // Realizar Consulta
             break;
 
         case '3':
-            MenuBuscar();
-            printf("Voce escolheu a opcao 3");
+            // Cancelar Consulta
             break;
 
         case '4':
-            printf("\nEncerrando sistema...\n");
+            // Listar Consultas
+
+        case '5':
             break;
 
         default:

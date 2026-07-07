@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include "menu_principal.h"
-#include "menu_realizar_atendimento.h"
-#include "menu_gerenciar_cadastros.h"
 #include "../utils/utilidades.h"
-#include "menu_buscar.h"
 
 /*
 
@@ -38,10 +35,10 @@ Para cada função MenuX o padrão é esse. MenuPrincipal está de acordo com o 
 }
 */ 
 static void imprimirMenu(void);
-static void executarOpcaoMenu(char opcao);
+static void executarOpcao(char opcao);
 
 
-extern void MenuPrincipal(void)
+extern void MenuRealizarAtendimento(void)
 {
     char opcao;
 
@@ -49,45 +46,38 @@ extern void MenuPrincipal(void)
         imprimirMenu();
         imprimirPrompt();
         opcao = getOpcao();
-        executarOpcaoMenu(opcao);
-    } while(opcao != '4');
+        executarOpcao(opcao);
+    } while(opcao != '3');
 }
 
 static void imprimirMenu(void)
 {
     limparTela();
-    printf("\n========================================\n");
-    printf(" SISTEMA CLINICA VETERINARIA\n");
-    printf("========================================\n");
-
-    printf("1 - Realizar Atendimento\n");
-    printf("2 - Gerenciar Cadastros\n");
-    printf("3 - Busca\n");
-    printf("4 - Sair\n");
+    printf("\n=============================\n");
+    printf("    REALIZAR ATENDIMENTO\n");
+    printf("=============================\n");
+    printf("1 - Consultas\n");
+    printf("2 - Venda\n");
+    printf("3 - Voltar\n");
 }
-static void executarOpcaoMenu(char opcao)
+static void executarOpcao(char opcao)
 {
     switch(opcao)
     {
         case '1':
-            MenuRealizarAtendimento();
+            MenuConsultas();
+            printf("Voce selecionou a opcao 1\n");
             break;
 
         case '2':
-            MenuGerenciarCadastros();
+            MenuVenda();
             break;
 
         case '3':
-            MenuBuscar();
-            printf("Voce escolheu a opcao 3");
-            break;
-
-        case '4':
-            printf("\nEncerrando sistema...\n");
             break;
 
         default:
-            printf("\nOpcao invalida.");
+            printf("Opcao invalidada.\n");
             pausar();
             break;
     }
