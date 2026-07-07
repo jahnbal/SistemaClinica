@@ -17,7 +17,6 @@ typedef struct {
 } Pet;
 */
 
-#define ARQUIVO_PETS "pets.dat"
 
 static void preencherPet(Pet *p) {
   printf("---- NOVO PET ----\n");
