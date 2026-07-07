@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "utilidades.h"
 
 void limparBuffer(void) {
@@ -47,8 +48,25 @@ int lerInteiro(void)
     return valor;
 }
 
+float lerFloat(void)
+{
+    float valor;
+    while (scanf("%f", &valor) != 1) {
+        printf("Entrada inválida. Por favor, digite um número decimal: ");
+        limparBuffer();
+    }
+    limparBuffer(); // Limpa o buffer após a leitura
+    return valor;
+}
+
 int pedirId(void)
 {
     printf("Digite o ID: ");
     return lerInteiro();
+}
+
+void lerString(char *buffer, int tamanho) {
+    
+    fgets(buffer, tamanho, stdin);
+    buffer[strcspn(buffer, "\n")] = '\0';
 }

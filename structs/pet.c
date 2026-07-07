@@ -127,7 +127,7 @@ int EditarPet(int id) {
       printf("Peso atual: %.2f\n", p.peso);
       printf("ID do Cliente atual: %d\n", p.id_Cliente);
 
-      int opcao;
+      char opcao;
       do {
         printf("\nO que deseja alterar?\n");
         printf("1 - Nome\n");
@@ -136,33 +136,34 @@ int EditarPet(int id) {
         printf("4 - ID do Cliente\n");
         printf("0 - Finalizar edição\n");
         printf("Escolha: ");
-        scanf("%d", &opcao);
+        opcao = getOpcao();
 
         switch (opcao) {
-        case 1:
+        case '1':
           printf("Novo nome: ");
-          scanf("%s", p.nome);
+          lerString(p.nome, sizeof(p.nome));
           break;
-        case 2:
+        case '2':
           printf("Nova idade: ");
-          scanf("%d", &p.idade);
+          p.idade = lerInteiro(); // p.idade = lerInteiro(); scanf("%d", &p.idade);
           break;
-        case 3:
+        case '3':
           printf("Novo peso: ");
-          scanf("%f", &p.peso);
+          p.peso = lerFloat(); // p.peso = lerFloat();
           break;
-        case 4:
+        case '4':
           printf("Novo ID do Cliente: ");
-          scanf("%d", &p.id_Cliente);
+          p.id_Cliente = lerInteiro(); // p.id_Cliente = lerInteiro();
           break;
-        case 0:
-          printf("Finalizando edição...\n");
+        case '0':
+          printf("\nFinalizando edição...\n");
           break;
         default:
           printf("Opção inválida!\n");
+          pausar();
           break;
         }
-      } while (opcao != 0);
+      } while (opcao != '0');
 
       // Sobrescreve o registro no mesmo lugar
       fseek(arquivo, posicao, SEEK_SET);
@@ -175,9 +176,11 @@ int EditarPet(int id) {
 
   if (encontrado) {
     printf("Pet editado com sucesso!\n");
+    pausar();
     return 1;
   } else {
     printf("Pet com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 }
