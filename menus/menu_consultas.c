@@ -5,6 +5,7 @@
 #include "menu_principal.h"
 #include "menu_realizar_atendimento.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
 
@@ -50,7 +51,9 @@ extern void MenuConsultas(void) {
     imprimirPrompt();
     opcao = getOpcao();
     executarOpcaoMenu(opcao);
-  } while (opcao != '6');
+    limparBuffer();
+
+  } while (opcao != '5');
 }
 
 static void imprimirMenu(void) {
@@ -66,8 +69,13 @@ static void imprimirMenu(void) {
 }
 static void executarOpcaoMenu(char opcao) {
 
-  ListaConsulta *lista = InicializarLista();
-  Consulta *consulta;
+  static ListaConsulta *lista = NULL;
+
+  if (!lista) {
+    lista = InicializarLista();
+  }
+
+  Consulta *consulta = malloc(sizeof(Consulta));
   Consulta *buscada;
   int removida;
   int conflito = -1;
@@ -80,11 +88,11 @@ static void executarOpcaoMenu(char opcao) {
     if (conflito == 0) {
       InserirConsulta(lista, *consulta);
       printf("Consulta Marcada!\n");
-      consulta->status = AGENDADA;
 
     } else {
       printf("Erro, consulta indisponivel por conflito\n");
     }
+    pausar();
     break;
 
   case '2':
@@ -94,12 +102,12 @@ static void executarOpcaoMenu(char opcao) {
     buscada = BuscarConsulta(lista, *consulta);
 
     if (buscada) {
-      consulta->status = FINALIZADA;
+
       printf("Consulta finalizada!\n");
     } else {
       printf("Consulta não encontrada\n");
     }
-
+    pausar();
     break;
 
   case '3':
@@ -116,11 +124,12 @@ static void executarOpcaoMenu(char opcao) {
     } else {
       printf("Consulta não encontrada\n");
     }
-
+    pausar();
     break;
 
   case '4':
     ListarConsultas(lista);
+    break;
 
   case '5':
     break;
