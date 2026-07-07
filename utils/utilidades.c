@@ -36,3 +36,19 @@ void pausar(void)
     limparBuffer();
 }
 
+int lerInteiro(void)
+{
+    int valor;
+    while (scanf("%d", &valor) != 1) {
+        printf("Entrada inválida. Por favor, digite um número inteiro: ");
+        limparBuffer();
+    }
+    limparBuffer(); // Limpa o buffer após a leitura
+    return valor;
+}
+
+int pedirId(void)
+{
+    printf("Digite o ID: ");
+    return lerInteiro();
+}

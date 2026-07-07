@@ -7,3 +7,7 @@ void imprimirPrompt(void);
 char getOpcao(void);
 
 void pausar(void);
+
+int lerInteiro(void);
+
+int pedirId(void);
