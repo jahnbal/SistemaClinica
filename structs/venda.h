@@ -35,8 +35,8 @@ typedef struct {
 
 typedef struct {
   int id_venda;
-  int id_pet;
-  int id_cliente;
+//  int id_pet;
+//  int id_cliente;
   int qtd_itens;
   /* [LP2 — Vetores Dinâmicos] arrays paralelos dos itens vendidos */
   int ids_produtos[MAX_ITENS_NOTA];

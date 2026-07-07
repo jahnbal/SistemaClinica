@@ -230,7 +230,7 @@ int SalvaRegistroVenda(RegistroVenda *venda, FILE *arq_vendas) {
  * ═══════════════════════════════════════════════════════════════════════════
  */
 void GerarRelatorioVendas(FILE *arq_vendas) {
-#define NUM_COLUNAS 6
+#define NUM_COLUNAS 4
 
   /* Conta registros */
   fseek(arq_vendas, 0, SEEK_END);
@@ -269,27 +269,29 @@ void GerarRelatorioVendas(FILE *arq_vendas) {
     if (fread(&reg, sizeof(RegistroVenda), 1, arq_vendas) != 1)
       break;
     matriz[i][0] = (float)reg.id_venda;
-    matriz[i][1] = (float)reg.id_pet;
-    matriz[i][2] = (float)reg.id_cliente;
-    matriz[i][3] = (float)reg.qtd_itens;
-    matriz[i][4] = reg.total;
-    matriz[i][5] = reg.troco;
+    matriz[i][1] = (float)reg.qtd_itens;
+    matriz[i][2] = reg.total;
+    matriz[i][3] = reg.troco;
   }
 
   // Exibe a tabela
-  printf("\n");
-  printf("  ========== RELATORIO DE VENDAS ==========\n");
-  printf("  %-8s | %-8s | %-10s | %-5s | %-10s | %s\n", "ID VENDA", "ID PET",
-         "ID CLIENTE", "ITENS", "TOTAL(R$)", "TROCO(R$)");
-  printf("  %s\n",
-         "------------------------------------------------------------------");
-  for (int i = 0; i < nLinhas; i++) {
-    printf("  %-8.0f | %-8.0f | %-10.0f | %-5.0f | %-10.2f | %.2f\n",
-           matriz[i][0], matriz[i][1], matriz[i][2], matriz[i][3], matriz[i][4],
-           matriz[i][5]);
-  }
-  printf("  %s\n",
-         "------------------------------------------------------------------");
+printf("\n");
+printf("  ========== RELATORIO DE VENDAS ==========\n");
+printf("  %-10s | %-8s | %-10s | %-10s\n",
+       "ID VENDA", "ITENS", "TOTAL(R$)", "TROCO(R$)");
+printf("  %s\n",
+       "-------------------------------------------------------");
+
+for (int i = 0; i < nLinhas; i++) {
+    printf("  %-10.0f | %-8.0f | %-10.2f | %-10.2f\n",
+           matriz[i][0],   // id_venda
+           matriz[i][1],   // qtd_itens
+           matriz[i][2],   // total
+           matriz[i][3]);  // troco
+}
+
+printf("  %s\n",
+       "-------------------------------------------------------");
   printf("  Total de vendas: %d\n\n", nLinhas);
 
   // Libera a matriz dinâmica
