@@ -35,9 +35,9 @@ int AdicionaItemCarrinho(Carrinho *carrinho, Produto *prod, int quantidade) {
   /* Se o produto já está no carrinho, apenas atualiza a quantidade */
   ItemCarrinho *atual = carrinho->cabeca;
   while (atual != NULL) {
-    if (atual->id_produto == prod->id) {
-      atual->quantidade += quantidade;
-      atual->total_item = atual->preco_unitario * atual->quantidade;
+    if (atual->produto.id == prod->id) {
+      atual->produto.quantidade += quantidade;
+      atual->total_item = atual->produto.preco * atual->produto.quantidade;
 
       carrinho->total = CalculaTotalRecursivo(carrinho->cabeca);
 
@@ -52,11 +52,11 @@ int AdicionaItemCarrinho(Carrinho *carrinho, Produto *prod, int quantidade) {
     return 0;
   }
 
-  novo->id_produto = prod->id;
-  strncpy(novo->nome_produto, prod->nome, TAM_NOME_PRODUTO - 1);
-  novo->nome_produto[TAM_NOME_PRODUTO - 1] = '\0';
-  novo->preco_unitario = prod->preco;
-  novo->quantidade = quantidade;
+  novo->produto.id = prod->id;
+  strncpy(novo->produto.nome, prod->nome, TAM_NOME_PRODUTO - 1);
+  novo->produto.nome[TAM_NOME_PRODUTO - 1] = '\0';
+  novo->produto.preco = prod->preco;
+  novo->produto.quantidade = quantidade;
   novo->total_item = prod->preco * (float)quantidade;
 
   /* Inserção no início da lista encadeada [LP2 — Lista Encadeada] */
@@ -80,10 +80,10 @@ int RemoveItemCarrinhoById(Carrinho **carrinho, Produto *prod) {
   ItemCarrinho *anterior = NULL;
 
   while (atual != NULL) {
-    if (atual->id_produto == prod->id) {
+    if (atual->produto.id == prod->id) {
       // Ajusta o total do carrinho antes de remover
       (*carrinho)->total -= atual->total_item;
-      (*carrinho)->qtd_itens -= atual->quantidade;
+      (*carrinho)->qtd_itens -= atual->produto.quantidade;
 
       // Reconecta a lista, pulando o nó removido
       if (anterior == NULL) {
@@ -176,8 +176,8 @@ void ExibeCarrinho(Carrinho *carrinho) {
   // Percorre a lista encadeada
   ItemCarrinho *atual = carrinho->cabeca;
   while (atual != NULL) {
-    printf("  %-30s | %-5d | %-10.2f | %.2f\n", atual->nome_produto,
-           atual->quantidade, atual->preco_unitario, atual->total_item);
+    printf("  %-30s | %-5d | %-10.2f | %.2f\n", atual->produto.nome,
+           atual->produto.quantidade, atual->produto.preco, atual->total_item);
     atual = atual->proximo;
   }
 
@@ -187,29 +187,19 @@ void ExibeCarrinho(Carrinho *carrinho) {
 }
 
 // NOTA FISCAL
-void ImprimirNotaFiscal(Carrinho *carrinho, Pet *pet, float valor_pago) {
+void ImprimirNotaFiscal(Carrinho *carrinho, float valor_pago) {
   float troco = valor_pago - carrinho->total;
 
-  printf("\n");
+  printf("\n  ===========================================================\n");
+  printf("  * NOTA FISCAL                            *\n");
   printf("  ===========================================================\n");
-  printf("  *          NOTA FISCAL — CLINICA VETERINARIA              *\n");
-  printf("  ===========================================================\n");
-  if (pet->nome != NULL)
-    printf("  Pet     : %s (ID: %d)\n", pet->nome, pet->id);
-  else
-    printf("  Pet ID  : %d\n", pet->id);
-  printf("  Tutor ID: %d\n", pet->id_Cliente);
-  printf("  -----------------------------------------------------------\n");
-
-  printf("  %-30s | %-5s | %-10s | %s\n", "PRODUTO", "QTD", "UNIT. (R$)",
-         "TOTAL (R$)");
-  printf("  %s\n",
-         "------------------------------------------------------------");
+  printf("  %-30s | %-5s | %-10s | %s\n", "PRODUTO", "QTD", "UNIT. (R$)", "TOTAL (R$)");
+  printf("  ------------------------------------------------------------\n");
 
   ItemCarrinho *atual = carrinho->cabeca;
   while (atual != NULL) {
-    printf("  %-30s | %-5d | %-10.2f | %.2f\n", atual->nome_produto,
-           atual->quantidade, atual->preco_unitario, atual->total_item);
+    printf("  %-30s | %-5d | %-10.2f | %.2f\n", atual->produto.nome,
+           atual->produto.quantidade, atual->produto.preco, atual->total_item);
     atual = atual->proximo;
   }
 

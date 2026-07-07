@@ -6,16 +6,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef void (*FuncExibeProduto)(Produto *produto); // PONTEIRO PARA FUNÇÃO
+typedef void (*FuncExibeProduto)(Produto *produto);
 
 // Cada item do carrinho é um nó da lista encadeada
 typedef struct ItemCarrinho {
-  int id_produto; // struct 
-  char nome_produto[TAM_NOME_PRODUTO];
-  float preco_unitario;
-  int quantidade;
-  float total_item; // preco total que aquele item contribui
+
+  Produto produto;
+
   struct ItemCarrinho *proximo; /* próximo nó da lista encadeada */
+
+  float total_item;
+
 } ItemCarrinho;
 
 // Carrinho de compras: cabeça da lista encadeada + metadados.
@@ -80,7 +81,7 @@ void ExibeCarrinho(Carrinho *carrinho);
  */
 
 /* Imprime a nota fiscal completa no terminal */
-void ImprimirNotaFiscal(Carrinho *carrinho, Pet *pet, float valor_pago);
+void ImprimirNotaFiscal(Carrinho *carrinho, float valor_pago);
 
 /* Grava o RegistroVenda no arquivo vendas.dat. Retorna 1 em sucesso */
 int SalvaRegistroVenda(RegistroVenda *venda, FILE *arq_vendas);
