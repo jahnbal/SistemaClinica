@@ -40,6 +40,7 @@ static int salvarPet(Pet *p) {
   FILE *arquivo = fopen(ARQUIVO_PETS, "ab");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
@@ -59,12 +60,14 @@ int ExcluirPet(int id) {
   FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
   FILE *temp = fopen("temp.dat", "wb");
   if (temp == NULL) {
     perror("[Erro] Não foi possível criar arquivo temporário.\n");
+    pausar();
     fclose(arquivo);
     return 0;
   }
@@ -90,9 +93,11 @@ int ExcluirPet(int id) {
 
   if (encontrado) {
     printf("Pet removido com sucesso!\n");
+    pausar();
     return 1;
   } else {
     printf("Pet com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 }
@@ -101,6 +106,7 @@ int EditarPet(int id) {
   FILE *arquivo = fopen(ARQUIVO_PETS, "r+b");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
@@ -178,6 +184,7 @@ int ListarPets() {
   FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
@@ -212,6 +219,7 @@ int BuscarPetPorId(int id) {
   FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 

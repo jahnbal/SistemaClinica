@@ -39,6 +39,7 @@ static int salvarProduto(Produto *p) {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "ab");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
@@ -59,12 +60,14 @@ int ExcluirProduto(int id) {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
   FILE *temp = fopen("temp_prods.dat", "wb");
   if (temp == NULL) {
     perror("[Erro] Não foi possível criar arquivo temporário.\n");
+    pausar();
     fclose(arquivo);
     return 0;
   }
@@ -90,9 +93,11 @@ int ExcluirProduto(int id) {
 
   if (encontrado) {
     printf("Produto removido com sucesso!\n");
+    pausar();
     return 1;
   } else {
     printf("Produto com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 }
@@ -101,6 +106,7 @@ int EditarProduto(int id) {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "r+b");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
@@ -171,6 +177,7 @@ int ListarProdutos() {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
@@ -204,6 +211,7 @@ int BuscarProdutoPorId(int id) {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 

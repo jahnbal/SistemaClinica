@@ -19,6 +19,7 @@ static int salvarVeterinario(Veterinario *v)
     FILE *arquivo = fopen(ARQUIVO_VETS, "ab");
     if (arquivo == NULL) {
         perror("[Erro] Arquivo não pode ser aberto.\n");
+        pausar();
         return 0;
     }
 
@@ -40,12 +41,14 @@ int ExcluirVeterinario(int id) {
   FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
   FILE *temp = fopen("temp3.dat", "wb");
   if (temp == NULL) {
     perror("[Erro] Não foi possível criar arquivo temporário.\n");
+    pausar();
     fclose(arquivo);
     return 0;
   }
@@ -71,9 +74,11 @@ int ExcluirVeterinario(int id) {
 
   if (encontrado) {
     printf("Veterinário removido com sucesso!\n");
+    pausar();
     return 1;
   } else {
     printf("Veterinário com ID %d não encontrado.\n", id);
+    pausar();
     return 0;
   }
 }
@@ -82,6 +87,7 @@ int EditarVeterinario(int id) {
   FILE *arquivo = fopen(ARQUIVO_VETS, "r+b");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
@@ -147,6 +153,7 @@ int ListarVeterinarios() {
   FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
@@ -178,6 +185,7 @@ int BuscarVeterinarioPorId(int id) {
   FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
   if (arquivo == NULL) {
     perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
     return 0;
   }
 
