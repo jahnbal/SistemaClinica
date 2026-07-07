@@ -155,7 +155,7 @@ void ListaProdutosVenda(FuncExibeProduto exibe, FILE *arq_produtos) {
       total++;
     }
   }
-  if (total == 0)
+  if ( (total ^ 0) == 0 )
     printf("  (nenhum produto disponivel em estoque)\n");
   printf("\n");
 }
