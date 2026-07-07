@@ -4,6 +4,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+void PedeDadosParaBusca(Consulta *consulta) {
+  printf("Data:\n");
+  scanf("%s", consulta->data);
+
+  printf("Horario:\n");
+  scanf("%d", &consulta->horario);
+
+  printf("Veterinario(ID):\n");
+  scanf("%d", &consulta->veterinario.id);
+}
+
 void PreencheDadosConsulta(Consulta *nova) {
 
   printf("Dados para o Agendamento:\n");
@@ -19,6 +30,9 @@ void PreencheDadosConsulta(Consulta *nova) {
 
   printf("\nHorario: ");
   scanf("%d", &(nova->horario));
+
+  printf("Id da consulta:");
+  scanf("%d", &nova->id);
 }
 
 ListaConsulta *InicializarLista() {
@@ -120,6 +134,35 @@ Consulta *BuscarConsulta(ListaConsulta *lista, Consulta consulta) {
   }
 
   return NULL; /* nao encontrada */
+}
+
+void ListarConsultas(ListaConsulta *lista) {
+  if (lista == NULL || lista->inicio == NULL) {
+    printf("Nenhuma consulta cadastrada.\n");
+    return;
+  }
+
+  const char *statusStr[] = {"AGENDADA", "EM_ATENDIMENTO", "FINALIZADA",
+                             "CANCELADA"};
+
+  NoConsulta *atual = lista->inicio;
+
+  printf("===== LISTA DE CONSULTAS (%d) =====\n", lista->tamanho);
+
+  while (atual != NULL) {
+    Consulta c = atual->dados;
+
+    printf("-----------------------------------\n");
+    printf("ID: %d\n", c.id);
+    printf("Pet: %s\n", c.animal.nome);
+    printf("Veterinario: %s\n", c.veterinario.nome);
+    printf("Data: %s | Horario: %02dh00\n", c.data, c.horario);
+    printf("Valor: R$ %.2f\n", c.valor);
+    printf("Status: %s\n", statusStr[c.status]);
+
+    atual = atual->proximo;
+  }
+  printf("===================================\n");
 }
 
 void LiberarLista(ListaConsulta *lista) {

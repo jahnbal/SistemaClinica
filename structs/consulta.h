@@ -33,10 +33,12 @@ typedef struct {
 
 // Protótipos — funções em consulta.c
 
+void PedeDadosParaBusca(Consulta *consulta);
 void PreencheDadosConsulta(Consulta *consulta);
 ListaConsulta *InicializarLista();
 int VerificarConflito(ListaConsulta *lista, Consulta consulta);
 int InserirConsulta(ListaConsulta *lista, Consulta consulta);
 int RemoverConsulta(ListaConsulta *lista, Consulta consulta);
 Consulta *BuscarConsulta(ListaConsulta *lista, Consulta consulta);
+void ListarConsultas(ListaConsulta *lista);
 void LiberarLista(ListaConsulta *lista);

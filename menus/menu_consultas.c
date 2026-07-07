@@ -59,7 +59,7 @@ static void imprimirMenu(void) {
   printf("          CONSULTAS\n");
   printf("=============================\n");
   printf("1 - Agendar Consulta\n");
-  printf("2 - Realizar Consulta\n");
+  printf("2 - Marcar como Realizada\n");
   printf("3 - Cancelar Consulta\n");
   printf("4 - Listar Consultas\n");
   printf("5 - Voltar\n");
@@ -67,22 +67,60 @@ static void imprimirMenu(void) {
 static void executarOpcaoMenu(char opcao) {
 
   ListaConsulta *lista = InicializarLista();
+  Consulta *consulta;
+  Consulta *buscada;
+  int removida;
+  int conflito = -1;
 
   switch (opcao) {
   case '1':
-    // Agendar Consulta
+    PreencheDadosConsulta(consulta);
+    conflito = VerificarConflito(lista, *consulta);
+
+    if (conflito == 0) {
+      InserirConsulta(lista, *consulta);
+      printf("Consulta Marcada!\n");
+      consulta->status = AGENDADA;
+
+    } else {
+      printf("Erro, consulta indisponivel por conflito\n");
+    }
     break;
 
   case '2':
-    // Realizar Consulta
+
+    PedeDadosParaBusca(consulta);
+
+    buscada = BuscarConsulta(lista, *consulta);
+
+    if (buscada) {
+      consulta->status = FINALIZADA;
+      printf("Consulta finalizada!\n");
+    } else {
+      printf("Consulta não encontrada\n");
+    }
+
     break;
 
   case '3':
-    // Cancelar Consulta
+
+    PedeDadosParaBusca(consulta);
+
+    buscada = BuscarConsulta(lista, *consulta);
+    if (buscada) {
+      removida = RemoverConsulta(lista, *consulta);
+
+      if (removida == 1) {
+        printf("Consulta Removida com suceso!\n");
+      }
+    } else {
+      printf("Consulta não encontrada\n");
+    }
+
     break;
 
   case '4':
-    // Listar Consultas
+    ListarConsultas(lista);
 
   case '5':
     break;
