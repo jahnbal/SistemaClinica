@@ -3,6 +3,8 @@ Cadastra/Exclui/Edita/Lista/Pesquisa
 
 */
 
+#define ARQUIVO_PETS "pets.dat"
+
 typedef struct {
 
   char nome[30];

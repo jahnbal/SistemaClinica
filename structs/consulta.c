@@ -1,5 +1,5 @@
 #include "consulta.h"
-#include "pets.h"
+#include "pet.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
