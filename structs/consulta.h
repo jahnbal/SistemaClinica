@@ -1,5 +1,4 @@
-#ifndef CONSULTA_H
-#define CONSULTA_H
+#pragma once
 
 #include "pet.h"
 #include "veterinario.h"

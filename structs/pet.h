@@ -1,3 +1,4 @@
+#pragma once
 /*
 Cadastra/Exclui/Edita/Lista/Pesquisa
 
