@@ -68,7 +68,6 @@ static void executarOpcao(char opcao)
     {
         case '1':
             MenuConsultas();
-            printf("Voce selecionou a opcao 1\n");
             break;
 
         case '2':

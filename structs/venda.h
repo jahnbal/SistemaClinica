@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef void (*FuncExibeProduto)(Produto *produto);
+typedef void (*FuncExibeProduto)(Produto *produto); // PONTEIRO PARA FUNÇÃO
 
 // Cada item do carrinho é um nó da lista encadeada
 typedef struct ItemCarrinho {

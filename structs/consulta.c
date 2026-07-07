@@ -1,18 +1,19 @@
-#include "consulta.h"
 #include "pet.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "consulta.h"
+#include "../utils/utilidades.h"
 
 void PedeDadosParaBusca(Consulta *consulta) {
   printf("Data:\n");
-  scanf("%s", consulta->data);
+  lerString(consulta->data, sizeof(consulta->data));
 
   printf("Horario:\n");
-  scanf("%d", &consulta->horario);
+  consulta->horario = lerInteiro();
 
   printf("Veterinario(ID):\n");
-  scanf("%d", &consulta->veterinario.id);
+  consulta->veterinario.id = lerInteiro();
 }
 
 void PreencheDadosConsulta(Consulta *nova) {
@@ -20,19 +21,19 @@ void PreencheDadosConsulta(Consulta *nova) {
   printf("Dados para o Agendamento:\n");
 
   printf("Nome do animal: ");
-  scanf("%s", nova->animal.nome);
+  lerString(nova->animal.nome, sizeof(nova->animal.nome));
 
   printf("\n valor: ");
-  scanf("%f", &nova->valor);
+  nova->valor = lerFloat();
 
   printf("\nData: ");
-  scanf("%s", nova->data);
+  lerString(nova->data, sizeof(nova->data));
 
   printf("\nHorario: ");
-  scanf("%d", &(nova->horario));
+  nova->horario = lerInteiro();
 
   printf("Id da consulta:");
-  scanf("%d", &nova->id);
+  nova->id = lerInteiro();
 }
 
 ListaConsulta *InicializarLista() {

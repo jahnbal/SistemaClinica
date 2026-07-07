@@ -51,7 +51,6 @@ extern void MenuConsultas(void) {
     imprimirPrompt();
     opcao = getOpcao();
     executarOpcaoMenu(opcao);
-    limparBuffer();
 
   } while (opcao != '5');
 }
