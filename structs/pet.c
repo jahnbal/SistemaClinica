@@ -21,19 +21,19 @@ typedef struct {
 static void preencherPet(Pet *p) {
   printf("---- NOVO PET ----\n");
   printf("ID: ");
-  scanf("%d", &p->id);
+  p->id = lerInteiro();
 
   printf("Nome: ");
-  scanf("%s", p->nome);
+  lerString(p->nome, sizeof(p->nome));
 
   printf("Idade: ");
-  scanf("%d", &p->idade);
+  p->idade = lerInteiro();
 
   printf("Peso: ");
-  scanf("%f", &p->peso);
+  p->peso = lerFloat();
 
   printf("ID do Cliente: ");
-  scanf("%d", &p->id_Cliente);
+  p->id_Cliente = lerInteiro();
 }
 
 static int salvarPet(Pet *p) {

@@ -6,10 +6,10 @@ static void preencherVeterinario(Veterinario *v)
 {
     printf("---- NOVO VETERINÁRIO ----\n");
     printf("ID: ");
-    scanf("%d", &v->id);
+    v->id = lerInteiro();
 
     printf("Nome: ");
-    scanf("%s", v->nome);
+    lerString(v->nome, sizeof(v->nome));
 
 }
 
