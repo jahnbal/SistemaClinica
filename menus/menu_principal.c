@@ -70,8 +70,7 @@ static void executarOpcaoMenu(char opcao)
     switch(opcao)
     {
         case '1':
-        //    MenuAtendimento();
-            printf("Voce escolheu a opcao 1");
+            MenuRealizarAtendimento();
             break;
 
         case '2':

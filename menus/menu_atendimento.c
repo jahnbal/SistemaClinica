@@ -38,7 +38,7 @@ static void imprimirMenu(void);
 static void executarOpcao(char opcao);
 
 
-extern void MenuAtendimento(void)
+extern void MenuRealizarAtendimento(void)
 {
     char opcao;
 

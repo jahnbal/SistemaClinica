@@ -155,7 +155,7 @@ int EditarProduto(int id) {
           printf("Opção inválida!\n");
           break;
         }
-      } while (opcao != 0);
+      } while (opcao != '0');
 
       fseek(arquivo, posicao, SEEK_SET);
       fwrite(&p, sizeof(Produto), 1, arquivo);

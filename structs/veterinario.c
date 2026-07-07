@@ -130,7 +130,7 @@ int EditarVeterinario(int id) {
           printf("Opção inválida!\n");
           break;
         }
-      } while (opcao != 0);
+      } while (opcao != '0');
 
       // Sobrescreve o registro no mesmo lugar
       fseek(arquivo, posicao, SEEK_SET);

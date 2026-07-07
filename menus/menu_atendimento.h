@@ -1,1 +1,1 @@
-extern void MenuAtendimento(void);
+extern void MenuRealizarAtendimento(void);
