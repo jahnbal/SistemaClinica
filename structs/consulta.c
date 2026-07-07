@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-Consulta *MarcarConsulta(Consulta *nova) {
+void PreencheDadosConsulta(Consulta *nova) {
 
   printf("Dados para o Agendamento:\n");
 
@@ -19,9 +19,6 @@ Consulta *MarcarConsulta(Consulta *nova) {
 
   printf("\nHorario: ");
   scanf("%d", &(nova->horario));
-
-  printf("Consulta marcada com sucesso!\n");
-  return nova;
 }
 
 void InicializarLista(ListaConsulta *lista) {
