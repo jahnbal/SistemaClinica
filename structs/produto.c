@@ -22,16 +22,17 @@ typedef struct {
 static void preencherProduto(Produto *p) {
   printf("---- NOVO PRODUTO ----\n");
   printf("ID: ");
-  scanf("%d", &p->id);
+  p->id = lerInteiro();
 
   printf("Nome: ");
-  scanf("%s", p->nome);
+  lerString(p->nome, sizeof(p->nome));
+  
 
   printf("Preço: ");
-  scanf("%f", &p->preco);
+  p->preco = lerFloat();
 
   printf("Quantidade: ");
-  scanf("%d", &p->quantidade);
+  p->quantidade = lerInteiro();
 }
 
 static int salvarProduto(Produto *p) {
