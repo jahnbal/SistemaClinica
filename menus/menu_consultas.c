@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include "menu_principal.h"
-#include "menu_realizar_atendimento.h"
-#include "menu_gerenciar_cadastros.h"
+#include "../structs/consulta.h"
 #include "../utils/utilidades.h"
 #include "menu_buscar.h"
+#include "menu_gerenciar_cadastros.h"
+#include "menu_principal.h"
+#include "menu_realizar_atendimento.h"
+#include <stdio.h>
 
 /*
 
@@ -20,7 +21,8 @@ obterOpcao() → captura a opção do usuário.
 executarOpcaoMenuPrincipal() → decide qual ação executar.
 
 
-Para cada função MenuX o padrão é esse. MenuPrincipal está de acordo com o padrão 
+Para cada função MenuX o padrão é esse. MenuPrincipal está de acordo com o
+padrão
 {
     char opcao;
 
@@ -36,61 +38,58 @@ Para cada função MenuX o padrão é esse. MenuPrincipal está de acordo com o 
 
     return 0;
 }
-*/ 
+*/
 static void imprimirMenu(void);
 static void executarOpcaoMenu(char opcao);
 
+extern void MenuConsultas(void) {
+  char opcao;
 
-extern void MenuConsultas(void)
-{
-    char opcao;
-
-    do {
-        imprimirMenu();
-        imprimirPrompt();
-        opcao = getOpcao();
-        executarOpcaoMenu(opcao);
-    } while(opcao != '6');
+  do {
+    imprimirMenu();
+    imprimirPrompt();
+    opcao = getOpcao();
+    executarOpcaoMenu(opcao);
+  } while (opcao != '6');
 }
 
-static void imprimirMenu(void)
-{
-    limparTela();
-    printf("\n=============================\n");
-    printf("          CONSULTAS\n");
-    printf("=============================\n");
-    printf("1 - Agendar Consulta\n");
-    printf("2 - Realizar Consulta\n");
-    printf("3 - Cancelar Consulta\n");
-    printf("4 - Listar Consultas\n");
-    printf("5 - Voltar\n");
+static void imprimirMenu(void) {
+  limparTela();
+  printf("\n=============================\n");
+  printf("          CONSULTAS\n");
+  printf("=============================\n");
+  printf("1 - Agendar Consulta\n");
+  printf("2 - Realizar Consulta\n");
+  printf("3 - Cancelar Consulta\n");
+  printf("4 - Listar Consultas\n");
+  printf("5 - Voltar\n");
 }
-static void executarOpcaoMenu(char opcao)
-{
-    switch(opcao)
-    {
-        case '1':
-            // Agendar Consulta
-            break;
+static void executarOpcaoMenu(char opcao) {
 
-        case '2':
-            // Realizar Consulta
-            break;
+  ListaConsulta *lista = InicializarLista();
 
-        case '3':
-            // Cancelar Consulta
-            break;
+  switch (opcao) {
+  case '1':
+    // Agendar Consulta
+    break;
 
-        case '4':
-            // Listar Consultas
+  case '2':
+    // Realizar Consulta
+    break;
 
-        case '5':
-            break;
+  case '3':
+    // Cancelar Consulta
+    break;
 
-        default:
-            printf("\nOpcao invalida.");
-            pausar();
-            break;
-    }
+  case '4':
+    // Listar Consultas
+
+  case '5':
+    break;
+
+  default:
+    printf("\nOpcao invalida.");
+    pausar();
+    break;
+  }
 }
-
