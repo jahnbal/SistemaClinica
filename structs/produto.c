@@ -196,6 +196,7 @@ int ListarProdutos() {
   }
 
   printf("Total de produtos: %d\n", contador);
+  pausar();
   return contador;
 }
 

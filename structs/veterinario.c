@@ -170,6 +170,7 @@ int ListarVeterinarios() {
   }
 
   printf("Total de veterinários: %d\n", contador);
+  pausar();
   return contador;
 }
 
