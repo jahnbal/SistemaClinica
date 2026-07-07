@@ -67,7 +67,7 @@ static void imprimirMenu(void)
 }
 static void executarOpcaoMenu(char opcao)
 {
-// APENAS FUNÇÕES NESSE NÍVEL
+    int id;
     switch (opcao)
     {
         case '1':
@@ -75,11 +75,13 @@ static void executarOpcaoMenu(char opcao)
             break;
 
         case '2':
-            ExcluirVeterinario();
+            id = pedirId();
+            ExcluirVeterinario(id);
             break;
 
         case '3':
-            EditarVeterinario();
+            id = pedirId();
+            EditarVeterinario(id);
             break;
 
         case '4':

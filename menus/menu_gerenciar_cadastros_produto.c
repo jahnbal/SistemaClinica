@@ -64,19 +64,20 @@ static void imprimirMenu(void) {
 }
 static void executarOpcaoMenu(char opcao) {
   // APENAS FUNÇÕES NESSE NÍVEL
+  int id;
   switch (opcao) {
   case '1':
     CadastrarProduto();
     break;
 
   case '2':
-    // NDO1: funcao que pega IDs;
-    ExcluirProduto();
+    id = pedirId();
+    ExcluirProduto(id);
     break;
 
   case '3':
-    // NDO1 : Funcao que pega IDs;
-    EditarProduto();
+    id = pedirId();
+    EditarProduto(id);
     break;
 
   case '4':
