@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "menu_principal.h"
 #include "../utils/utilidades.h"
+#include "menu_consultas.h"
+#include "menu_venda.h"
 
 /*
 

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "menu_principal.h"
-#include "menu_atendimento.h"
+#include "menu_realizar_atendimento.h"
 #include "menu_gerenciar_cadastros.h"
 #include "../utils/utilidades.h"
 #include "../structs/veterinario.h"
