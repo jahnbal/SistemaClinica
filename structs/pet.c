@@ -204,6 +204,7 @@ int ListarPets() {
   }
 
   printf("Total de pets: %d\n", contador);
+  pausar();
   return contador;
 }
 
