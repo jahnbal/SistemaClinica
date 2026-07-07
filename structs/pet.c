@@ -47,7 +47,6 @@ static int salvarPet(Pet *p) {
   fwrite(p, sizeof(Pet), 1, arquivo);
   fclose(arquivo);
   printf("Pet salvo com sucesso!\n");
-  pausar();
   return 1;
 }
 
@@ -212,6 +211,7 @@ int ListarPets() {
 
   if (contador == 0) {
     printf("Nenhum pet cadastrado.\n");
+    pausar();
     return 0;
   }
 

@@ -66,7 +66,6 @@ int pedirId(void)
 }
 
 void lerString(char *buffer, int tamanho) {
-    limparBuffer();
     fgets(buffer, tamanho, stdin);
     buffer[strcspn(buffer, "\n")] = '\0';
 }

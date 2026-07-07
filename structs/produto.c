@@ -46,7 +46,6 @@ static int salvarProduto(Produto *p) {
   fwrite(p, sizeof(Produto), 1, arquivo);
   fclose(arquivo);
   printf("Produto salvo com sucesso!\n");
-  pausar();
   return 1;
 }
 
@@ -203,6 +202,7 @@ int ListarProdutos() {
 
   if (contador == 0) {
     printf("Nenhum produto cadastrado.\n");
+    pausar();
     return 0;
   }
 

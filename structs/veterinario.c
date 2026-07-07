@@ -26,7 +26,6 @@ static int salvarVeterinario(Veterinario *v)
     fwrite(v, sizeof(Veterinario), 1, arquivo);
     fclose(arquivo);
     printf("Veterinário salvo com sucesso!\n");
-    pausar();
     return 1;
 }
 
@@ -177,6 +176,7 @@ int ListarVeterinarios() {
 
   if (contador == 0) {
     printf("Nenhum veterinário cadastrado.\n");
+    pausar();
     return 0;
   }
 
