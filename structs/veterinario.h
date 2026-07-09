@@ -1,9 +1,10 @@
 #pragma once
-/*
-Cadastra/Exclui/Edita/Lista/Pesquisa
 
-*/
 #include <stdio.h>
+
+// Cadastra/Exclui/Edita/Lista/Pesquisa
+
+
 
 
 typedef struct {

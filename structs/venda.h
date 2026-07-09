@@ -6,6 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_ITENS_NOTA 50
+#define NOME_ARQUIVO_VENDAS "vendas.dat"
+
 typedef void (*FuncExibeProduto)(Produto *produto);
 
 // Cada item do carrinho é um nó da lista encadeada
@@ -30,15 +33,12 @@ typedef struct {
  * Registro persistente de venda (gravado em vendas.dat).
  * Usa vetores de tamanho fixo para as colunas da nota fiscal.
  */
-#define MAX_ITENS_NOTA 50
-#define NOME_ARQUIVO_VENDAS "vendas.dat"
+
 
 typedef struct {
   int id_venda;
-//  int id_pet;
-//  int id_cliente;
   int qtd_itens;
-  /* [LP2 — Vetores Dinâmicos] arrays paralelos dos itens vendidos */
+  /* arrays paralelos dos itens vendidos */
   int ids_produtos[MAX_ITENS_NOTA];
   int quantidades[MAX_ITENS_NOTA];
   float precos[MAX_ITENS_NOTA];

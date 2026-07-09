@@ -5,18 +5,15 @@
 /*
 Cadastra/Exclui/Edita/Lista/Pesquisa
 
-
-
 typedef struct {
 
-        int id;
-        char nome[TAM_NOME_PRODUTO];
-        float preco;
-        int quantidade;
-        int ativo; //1 ativo, 0 inativo
-// Descrição tirei pq n é usada
-// Agente ta literalmente só cadastradando e alterando
-}
+  int id;
+  char nome[TAM_NOME_PRODUTO];
+  float preco;
+  int quantidade;
+
+} Produto;
+
 */
 
 static void preencherProduto(Produto *p) {
@@ -106,7 +103,7 @@ int ExcluirProduto(int id) {
   while (fread(&p, sizeof(Produto), 1, arquivo) == 1) {
     if (p.id == id) {
       encontrado =
-          1; // não copia esse pet para o temp (ou seja, ele é "excluído")
+          1; // não copia esse pet para o temp ou seja exclui
       continue;
     }
     fwrite(&p, sizeof(Produto), 1, temp);

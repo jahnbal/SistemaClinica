@@ -77,8 +77,7 @@ int ExcluirVeterinario(int id) {
 
   while (fread(&v, sizeof(Veterinario), 1, arquivo) == 1) {
     if (v.id == id) {
-      encontrado = 1; // não copia esse veterinário para o temp (ou seja, ele é
-                      // "excluído")
+      encontrado = 1; // não copia esse veterinário para o temp ou seja exlui
       continue;
     }
     fwrite(&v, sizeof(Veterinario), 1, temp);

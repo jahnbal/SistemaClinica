@@ -18,20 +18,17 @@ typedef struct {
 } Consulta;
 
 // Nó da lista encadeada — LP2: Lista Encadeada
-
 typedef struct NoConsulta {
   Consulta dados;
   struct NoConsulta *proximo;
 } NoConsulta;
 
 // Cabeça da lista encadeada
-
 typedef struct {
   NoConsulta *inicio;
   int tamanho;
 } ListaConsulta;
 
-// Protótipos — funções em consulta.c
 
 void PedeDadosParaBusca(Consulta *consulta);
 void PreencheDadosConsulta(Consulta *consulta);

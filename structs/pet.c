@@ -101,7 +101,7 @@ int ExcluirPet(int id) {
   while (fread(&p, sizeof(Pet), 1, arquivo) == 1) {
     if (p.id == id) {
       encontrado =
-          1; // não copia esse pet para o temp (ou seja, ele é "excluído")
+          1; // não copia esse pet para o temp ou seja exclui
       continue;
     }
     fwrite(&p, sizeof(Pet), 1, temp);
@@ -167,15 +167,15 @@ int EditarPet(int id) {
         case '2':
           printf("Nova idade: ");
           p.idade =
-              lerInteiro(); // p.idade = lerInteiro(); scanf("%d", &p.idade);
+              lerInteiro();
           break;
         case '3':
           printf("Novo peso: ");
-          p.peso = lerFloat(); // p.peso = lerFloat();
+          p.peso = lerFloat();
           break;
         case '4':
           printf("Novo ID do Cliente: ");
-          p.id_Cliente = lerInteiro(); // p.id_Cliente = lerInteiro();
+          p.id_Cliente = lerInteiro();
           break;
         case '0':
           printf("\nFinalizando edição...\n");

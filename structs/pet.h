@@ -1,10 +1,8 @@
 #pragma once
-/*
-Cadastra/Exclui/Edita/Lista/Pesquisa
-
-*/
 
 #define ARQUIVO_PETS "pets.dat"
+
+// Cadastra/Exclui/Edita/Lista/Pesquisa
 
 typedef struct {
 
