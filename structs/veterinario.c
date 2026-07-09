@@ -2,40 +2,58 @@
 #include "../utils/utilidades.h"
 #define ARQUIVO_VETS "veterinarios.dat"
 
-static void preencherVeterinario(Veterinario *v)
-{
-    printf("---- NOVO VETERINÁRIO ----\n");
-    printf("ID: ");
+static void preencherVeterinario(Veterinario *v) {
+  printf("---- NOVO VETERINÁRIO ----\n");
+  printf("ID: ");
+
+  do {
+
     v->id = lerInteiro();
 
-    printf("Nome: ");
-    lerString(v->nome, sizeof(v->nome));
+  } while (VerificaIdIgualVeterinario(v->id) != 0);
 
+  printf("Nome: ");
+  lerString(v->nome, sizeof(v->nome));
 }
 
+int VerificaIdIgualVeterinario(int id) {
+  FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
+  if (arquivo == NULL) {
+    return 0;
+  }
 
-static int salvarVeterinario(Veterinario *v)
-{
-    FILE *arquivo = fopen(ARQUIVO_VETS, "ab");
-    if (arquivo == NULL) {
-        perror("[Erro] Arquivo não pode ser aberto.\n");
-        pausar();
-        return 0;
+  Veterinario f;
+
+  while (fread(&f, sizeof(Veterinario), 1, arquivo) == 1) {
+    if (f.id == id) {
+      fclose(arquivo);
+      return 1;
     }
+  }
 
-    fwrite(v, sizeof(Veterinario), 1, arquivo);
-    fclose(arquivo);
-    printf("Veterinário salvo com sucesso!\n");
-    return 1;
+  fclose(arquivo);
+  return 0;
 }
 
+static int salvarVeterinario(Veterinario *v) {
+  FILE *arquivo = fopen(ARQUIVO_VETS, "ab");
+  if (arquivo == NULL) {
+    perror("[Erro] Arquivo não pode ser aberto.\n");
+    pausar();
+    return 0;
+  }
 
-void CadastrarVeterinario() 
-{
-    Veterinario v;
-    preencherVeterinario(&v);
-    salvarVeterinario(&v);
-    limparBuffer();
+  fwrite(v, sizeof(Veterinario), 1, arquivo);
+  fclose(arquivo);
+  printf("Veterinário salvo com sucesso!\n");
+  return 1;
+}
+
+void CadastrarVeterinario() {
+  Veterinario v;
+  preencherVeterinario(&v);
+  salvarVeterinario(&v);
+  limparBuffer();
 }
 
 int ExcluirVeterinario(int id) {
@@ -59,8 +77,8 @@ int ExcluirVeterinario(int id) {
 
   while (fread(&v, sizeof(Veterinario), 1, arquivo) == 1) {
     if (v.id == id) {
-      encontrado =
-          1; // não copia esse veterinário para o temp (ou seja, ele é "excluído")
+      encontrado = 1; // não copia esse veterinário para o temp (ou seja, ele é
+                      // "excluído")
       continue;
     }
     fwrite(&v, sizeof(Veterinario), 1, temp);

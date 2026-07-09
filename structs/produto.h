@@ -18,6 +18,8 @@ typedef struct {
 
 void CadastrarProduto();
 
+int VerificaIdIgualProduto(int id);
+
 int ExcluirProduto(int id);
 
 int EditarProduto(int id);

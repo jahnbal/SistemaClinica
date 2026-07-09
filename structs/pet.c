@@ -17,11 +17,13 @@ typedef struct {
 } Pet;
 */
 
-
 static void preencherPet(Pet *p) {
   printf("---- NOVO PET ----\n");
   printf("ID: ");
-  p->id = lerInteiro();
+  do {
+    p->id = lerInteiro();
+
+  } while (VerificaIdIgualPet(p->id) != 0);
 
   printf("Nome: ");
   lerString(p->nome, sizeof(p->nome));
@@ -34,6 +36,26 @@ static void preencherPet(Pet *p) {
 
   printf("ID do Cliente: ");
   p->id_Cliente = lerInteiro();
+}
+
+int VerificaIdIgualPet(int id) {
+  FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
+  if (arquivo == NULL) {
+    return 0;
+  }
+
+  Pet p;
+
+  while (fread(&p, sizeof(Pet), 1, arquivo) == 1) {
+    if (p.id == id) {
+      printf("Esse id já foi Cadstrado, tente novamnete\n");
+      fclose(arquivo);
+      return 1;
+    }
+  }
+
+  fclose(arquivo);
+  return 0;
 }
 
 static int salvarPet(Pet *p) {
@@ -144,7 +166,8 @@ int EditarPet(int id) {
           break;
         case '2':
           printf("Nova idade: ");
-          p.idade = lerInteiro(); // p.idade = lerInteiro(); scanf("%d", &p.idade);
+          p.idade =
+              lerInteiro(); // p.idade = lerInteiro(); scanf("%d", &p.idade);
           break;
         case '3':
           printf("Novo peso: ");

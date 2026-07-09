@@ -18,6 +18,8 @@ typedef struct {
 
 void CadastrarPet();
 
+int VerificaIdIgualPet(int id);
+
 int ExcluirPet(int id);
 
 int EditarPet(int id);

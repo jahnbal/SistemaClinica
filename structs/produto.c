@@ -20,9 +20,17 @@ typedef struct {
 */
 
 static void preencherProduto(Produto *p) {
+
+  int igual;
+  FILE *arq_prods = fopen(ARQUIVO_PRODS, "r");
+
   printf("---- NOVO PRODUTO ----\n");
   printf("ID: ");
-  p->id = lerInteiro();
+
+  do {
+    p->id = lerInteiro();
+
+  } while (VerificaIdIgualProduto(p->id) != 0);
 
   printf("Nome: ");
   lerString(p->nome, sizeof(p->nome));
@@ -32,6 +40,26 @@ static void preencherProduto(Produto *p) {
 
   printf("Quantidade: ");
   p->quantidade = lerInteiro();
+}
+
+int VerificaIdIgualProduto(int id) {
+  FILE *arquivo = fopen(ARQUIVO_PRODS, "rb");
+  if (arquivo == NULL) {
+    return 0; // se o arquivo não existe, não há ID repetido
+  }
+
+  Produto p;
+
+  while (fread(&p, sizeof(Produto), 1, arquivo) == 1) {
+    if (p.id == id) {
+      printf("Ja existe um produto cadastrado com esse id, tente novamente\n");
+      fclose(arquivo);
+      return 1; // ID já existe
+    }
+  }
+
+  fclose(arquivo);
+  return 0; // ID não encontrado
 }
 
 static int salvarProduto(Produto *p) {
