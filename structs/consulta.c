@@ -70,8 +70,8 @@ int RemoverConsulta(ListaConsulta *lista, Consulta consulta) {
     int mesmaData = (strcmp(atual->dados.data, consulta.data) == 0);
     int mesmoHorario = (atual->dados.horario == consulta.horario);
 
-    /* Mesmo criterio usado em VerificarConflito; ajuste o campo
-       de identificacao do veterinario se necessario */
+    // Mesmo criterio usado em VerificarConflito; ajustar o campo
+    // de identificacao do veterinario se necessario
     int mesmoVeterinario =
         (atual->dados.veterinario.id == consulta.veterinario.id);
 
@@ -101,13 +101,12 @@ int VerificarConflito(ListaConsulta *lista, Consulta consulta) {
     int mesmaData = (strcmp(atual->dados.data, consulta.data) == 0);
     int mesmoHorario = (atual->dados.horario == consulta.horario);
 
-    /* Ajuste esta comparacao para o campo que identifica o veterinario
-       na sua struct Funcionario, ex: .id, .cpf, .nome, etc. */
+    // ajustar para o campo que identifica os vets
     int mesmoVeterinario =
         (atual->dados.veterinario.id == consulta.veterinario.id);
 
     if (mesmaData && mesmoHorario && mesmoVeterinario) {
-      return 1; /* conflito encontrado */
+      return 1; // conflito encontrado
     }
 
     atual = atual->proximo;
@@ -123,7 +122,7 @@ Consulta *BuscarConsulta(ListaConsulta *lista, Consulta consulta) {
     int mesmaData = (strcmp(atual->dados.data, consulta.data) == 0);
     int mesmoHorario = (atual->dados.horario == consulta.horario);
 
-    /* Mesmo criterio usado em VerificarConflito e RemoverConsulta */
+    // ajustar o identificador do vet aqui se for mudar nas outras funcs
     int mesmoVeterinario =
         (atual->dados.veterinario.id == consulta.veterinario.id);
 
@@ -134,7 +133,7 @@ Consulta *BuscarConsulta(ListaConsulta *lista, Consulta consulta) {
     atual = atual->proximo;
   }
 
-  return NULL; /* nao encontrada */
+  return NULL; // nao encontrada
 }
 
 void ListarConsultas(ListaConsulta *lista) {
