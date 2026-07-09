@@ -25,3 +25,5 @@ int EditarVeterinario(int id);
 int ListarVeterinarios(); 
 
 int BuscarVeterinarioPorId(int id);
+
+int VerificaIdIgualVeterinario(int id);
