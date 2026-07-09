@@ -1,5 +1,4 @@
-#ifndef VENDA_H
-#define VENDA_H
+#pragma once
 
 #include "pet.h"
 #include "produto.h"
@@ -93,5 +92,3 @@ int SalvaRegistroVenda(RegistroVenda *venda, FILE *arq_vendas);
  * Colunas: [ID venda | Qtd itens | Total | Troco]
  */
 void GerarRelatorioVendas(FILE *arq_vendas);
-
-#endif /* VENDA_H */

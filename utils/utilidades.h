@@ -1,3 +1,5 @@
+#pragma once
+
 void limparBuffer(void);
 
 void limparTela(void);
