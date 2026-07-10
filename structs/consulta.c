@@ -1,9 +1,9 @@
+#include "consulta.h"
+#include "../utils/utilidades.h"
 #include "pet.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "consulta.h"
-#include "../utils/utilidades.h"
 
 void PedeDadosParaBusca(Consulta *consulta) {
   printf("Data:\n");
@@ -36,15 +36,14 @@ void PreencheDadosConsulta(Consulta *nova) {
   nova->id = lerInteiro();
 }
 
-void InicializarLista(ListaConsulta** lista)
-{
-    *lista = malloc(sizeof(ListaConsulta));
+void InicializarLista(ListaConsulta **lista) {
+  *lista = malloc(sizeof(ListaConsulta));
 
-    if (*lista) {
-        
-        (*lista)->inicio  = NULL;
-        (*lista)->tamanho = 0;
-    }
+  if (*lista) {
+
+    (*lista)->inicio = NULL;
+    (*lista)->tamanho = 0;
+  }
 }
 
 int InserirConsulta(ListaConsulta *lista, Consulta consulta) {
@@ -169,52 +168,51 @@ void ListarConsultas(ListaConsulta *lista) {
 }
 
 void SalvarLista(ListaConsulta *lista) {
-    FILE *arq_consultas = fopen(ARQUIVO_CONSULTAS, "wb");
-    if (arq_consultas == NULL) {
-        printf("Erro ao abrir arquivo para escrita.\n");
-        return;
-    }
+  FILE *arq_consultas = fopen(ARQUIVO_CONSULTAS, "wb");
+  if (arq_consultas == NULL) {
+    printf("Erro ao abrir arquivo para escrita.\n");
+    return;
+  }
 
-    NoConsulta *atual = lista->inicio;
-    while (atual != NULL) {
-        fwrite(&atual->dados, sizeof(Consulta), 1, arq_consultas);
-        atual = atual->proximo;
-    }
+  NoConsulta *atual = lista->inicio;
+  while (atual != NULL) {
+    fwrite(&atual->dados, sizeof(Consulta), 1, arq_consultas);
+    atual = atual->proximo;
+  }
 
-    fclose(arq_consultas);
+  fclose(arq_consultas);
 }
 
-void CarregarLista(ListaConsulta* lista)
-{
-    FILE* arq_consultas = fopen(ARQUIVO_CONSULTAS, "rb");
-    if (arq_consultas == NULL) {
-        return; // arquivo ainda não existe, sem erro
+void CarregarLista(ListaConsulta *lista) {
+  FILE *arq_consultas = fopen(ARQUIVO_CONSULTAS, "rb");
+  if (arq_consultas == NULL) {
+    return; // arquivo ainda não existe, sem erro
+  }
+
+  Consulta dados;
+
+  while (fread(&dados, sizeof(Consulta), 1, arq_consultas) == 1) {
+    NoConsulta *novo = (NoConsulta *)malloc(sizeof(NoConsulta));
+    if (novo == NULL) {
+      printf("Erro ao alocar memória.\n");
+      break;
     }
 
-    Consulta dados;
+    novo->dados = dados;
+    novo->proximo = NULL;
 
-    while (fread(&dados, sizeof(Consulta), 1, arq_consultas) == 1) {
-        NoConsulta* novo = (NoConsulta*)malloc(sizeof(NoConsulta));
-        if (novo == NULL) {
-            printf("Erro ao alocar memória.\n");
-            break;
-        }
-
-        novo->dados = dados;
-        novo->proximo = NULL;
-
-        if (lista->inicio == NULL) {
-            lista->inicio = novo;
-        } else {
-            NoConsulta* atual = lista->inicio;
-            while (atual->proximo != NULL) {
-                atual = atual->proximo;
-            }
-            atual->proximo = novo;
-        }
-
-        lista->tamanho++;
+    if (lista->inicio == NULL) {
+      lista->inicio = novo;
+    } else {
+      NoConsulta *atual = lista->inicio;
+      while (atual->proximo != NULL) {
+        atual = atual->proximo;
+      }
+      atual->proximo = novo;
     }
 
-    fclose(arq_consultas);
+    lista->tamanho++;
+  }
+
+  fclose(arq_consultas);
 }

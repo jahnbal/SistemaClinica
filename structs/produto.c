@@ -25,11 +25,11 @@ static void preencherProduto(Produto *p) {
 
   do {
 
-    printf("ID(5 digitos): ");
+    printf("ID: ");
 
     p->id = lerInteiro();
 
-  } while (VerificaIdIgualProduto(p->id) == 1 || ContarDigitos(p->id) != 5);
+  } while (VerificaIdIgualProduto(p->id) == 1);
 
   printf("Nome: ");
   lerString(p->nome, sizeof(p->nome));

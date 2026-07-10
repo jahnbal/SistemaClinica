@@ -6,11 +6,11 @@ static void preencherVeterinario(Veterinario *v) {
 
   do {
 
-    printf("ID(5 digitos): ");
+    printf("ID: ");
 
     v->id = lerInteiro();
 
-  } while (VerificaIdIgualVeterinario(v->id) == 1 || ContarDigitos(v->id) != 5);
+  } while (VerificaIdIgualVeterinario(v->id) == 1);
 
   printf("Nome: ");
   lerString(v->nome, sizeof(v->nome));

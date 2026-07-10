@@ -32,7 +32,6 @@ typedef struct {
   int tamanho;
 } ListaConsulta;
 
-
 void PedeDadosParaBusca(Consulta *consulta);
 void PreencheDadosConsulta(Consulta *consulta);
 void InicializarLista(ListaConsulta **lista);
@@ -42,4 +41,4 @@ int RemoverConsulta(ListaConsulta *lista, Consulta consulta);
 Consulta *BuscarConsulta(ListaConsulta *lista, Consulta consulta);
 void ListarConsultas(ListaConsulta *lista);
 void SalvarLista(ListaConsulta *lista);
-void CarregarLista(ListaConsulta* lista);
+void CarregarLista(ListaConsulta *lista);

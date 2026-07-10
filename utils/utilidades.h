@@ -17,5 +17,3 @@ float lerFloat(void);
 int pedirId(void);
 
 void lerString(char *buffer, int tamanho);
-
-int ContarDigitos(int numero);

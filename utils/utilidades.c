@@ -62,25 +62,3 @@ void lerString(char *buffer, int tamanho) {
   fgets(buffer, tamanho, stdin);
   buffer[strcspn(buffer, "\n")] = '\0';
 }
-
-int ContarDigitos(int numero) {
-  int contador = 0;
-
-  // Caso especial: se o número for 0, ele tem 1 dígito
-  if (numero == 0) {
-    return 1;
-  }
-
-  // Se o número for negativo, invertemos para positivo
-  if (numero < 0) {
-    numero = -numero;
-  }
-
-  // Loop para dividir o número por 10 até restar zero
-  while (numero > 0) {
-    numero /= 10; // Remove o último dígito
-    contador++;   // Incrementa a contagem
-  }
-
-  return contador;
-}

@@ -23,11 +23,11 @@ static void preencherPet(Pet *p) {
 
   do {
 
-    printf("ID(5 digitos): ");
+    printf("ID: ");
 
     p->id = lerInteiro();
 
-  } while (VerificaIdIgualPet(p->id) == 1 || ContarDigitos(p->id) != 5);
+  } while (VerificaIdIgualPet(p->id) == 1);
 
   printf("Nome: ");
   lerString(p->nome, sizeof(p->nome));
@@ -104,8 +104,7 @@ int ExcluirPet(int id) {
 
   while (fread(&p, sizeof(Pet), 1, arquivo) == 1) {
     if (p.id == id) {
-      encontrado =
-          1; // não copia esse pet para o temp ou seja exclui
+      encontrado = 1; // não copia esse pet para o temp ou seja exclui
       continue;
     }
     fwrite(&p, sizeof(Pet), 1, temp);
@@ -170,8 +169,7 @@ int EditarPet(int id) {
           break;
         case '2':
           printf("Nova idade: ");
-          p.idade =
-              lerInteiro();
+          p.idade = lerInteiro();
           break;
         case '3':
           printf("Novo peso: ");
