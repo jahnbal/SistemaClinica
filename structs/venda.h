@@ -53,7 +53,7 @@ int AdicionaItemCarrinho(Carrinho *carrinho, Produto *prod, int quantidade);
 
 // Remove um item do carrinho pelo ID do produto, liberando o nó da lista
 // encadeada.
-int RemoveItemCarrinhoById(Carrinho **carrinho, Produto *prod);
+int RemoveItemCarrinhoById(Carrinho *carrinho, Produto *prod);
 
 // Libera todos os itens do carrinho
 void LimpaCarrinho(Carrinho *carrinho);
