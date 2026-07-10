@@ -166,21 +166,6 @@ void ListarConsultas(ListaConsulta *lista) {
   printf("===================================\n");
   pausar();
 }
-
-void LiberarLista(ListaConsulta *lista) {
-  NoConsulta *atual = lista->inicio;
-  NoConsulta *proximo;
-
-  while (atual != NULL) {
-    proximo = atual->proximo;
-    free(atual);
-    atual = proximo;
-  }
-
-  lista->inicio = NULL;
-  lista->tamanho = 0;
-}
-
 void SalvarLista(ListaConsulta *lista) {
   FILE *arq_consultas = fopen(ARQUIVO_CONSULTAS, "ab");
   if (arq_consultas == NULL) {
