@@ -18,9 +18,6 @@ typedef struct {
 
 static void preencherProduto(Produto *p) {
 
-  int igual;
-  FILE *arq_prods = fopen(ARQUIVO_PRODS, "r");
-
   printf("---- NOVO PRODUTO ----\n");
 
   do {

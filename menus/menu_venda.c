@@ -113,7 +113,7 @@ static void opcao_remover(Carrinho *carrinho) {
   p_temp.id = id;
 
   Carrinho *ptr_carrinho = carrinho;
-  if (RemoveItemCarrinhoById(&ptr_carrinho, &p_temp)) {
+  if (RemoveItemCarrinhoById(ptr_carrinho, &p_temp)) {
     printf("  Produto removido do carrinho com sucesso!\n");
   } else {
     printf("  Produto nao encontrado no carrinho.\n");
