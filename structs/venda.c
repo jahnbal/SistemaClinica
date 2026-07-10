@@ -68,23 +68,24 @@ int AdicionaItemCarrinho(Carrinho *carrinho, Produto *prod, int quantidade) {
 
 
 //  usa ItemCarrinho** para reescrever qualquer
-int RemoveItemCarrinhoById(Carrinho **carrinho, Produto *prod) {
-  if (carrinho == NULL || *carrinho == NULL || prod == NULL)
+int RemoveItemCarrinhoById(Carrinho *carrinho, Produto *prod) {
+  if (carrinho == NULL || prod == NULL)
     return 0;
 
-  ItemCarrinho *atual = (*carrinho)->cabeca;
+  ItemCarrinho *atual = carrinho->cabeca;
   ItemCarrinho *anterior = NULL;
 
   while (atual != NULL) {
     if (atual->produto.id == prod->id) {
-      // Ajusta o total do carrinho antes de remover
-      (*carrinho)->total -= atual->total_item;
-      (*carrinho)->qtd_itens -= atual->produto.quantidade;
+      // Ajustar o total do carrinho antes de remover
+      carrinho->total -= atual->total_item;
+      carrinho->qtd_itens -= atual->produto.quantidade;
 
       // Reconecta a lista, pulando o nó removido
       if (anterior == NULL) {
-        (*carrinho)->cabeca = atual->proximo;
-      } else {
+        carrinho->cabeca = atual->proximo;
+      } 
+      else {
         anterior->proximo = atual->proximo;
       }
 
