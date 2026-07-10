@@ -4,13 +4,14 @@
 
 static void preencherVeterinario(Veterinario *v) {
   printf("---- NOVO VETERINÁRIO ----\n");
-  printf("ID: ");
 
   do {
 
+    printf("ID(5 digitos): ");
+
     v->id = lerInteiro();
 
-  } while (VerificaIdIgualVeterinario(v->id) != 0);
+  } while (VerificaIdIgualVeterinario(v->id) == 1 || ContarDigitos(v->id) != 5);
 
   printf("Nome: ");
   lerString(v->nome, sizeof(v->nome));

@@ -18,12 +18,16 @@ typedef struct {
 */
 
 static void preencherPet(Pet *p) {
+
   printf("---- NOVO PET ----\n");
-  printf("ID: ");
+
   do {
+
+    printf("ID(5 digitos): ");
+
     p->id = lerInteiro();
 
-  } while (VerificaIdIgualPet(p->id) != 0);
+  } while (VerificaIdIgualPet(p->id) == 1 || ContarDigitos(p->id) != 5);
 
   printf("Nome: ");
   lerString(p->nome, sizeof(p->nome));

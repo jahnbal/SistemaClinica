@@ -25,12 +25,14 @@ static void preencherProduto(Produto *p) {
   FILE *arq_prods = fopen(ARQUIVO_PRODS, "r");
 
   printf("---- NOVO PRODUTO ----\n");
-  printf("ID: ");
 
   do {
+
+    printf("ID(5 digitos): ");
+
     p->id = lerInteiro();
 
-  } while (VerificaIdIgualProduto(p->id) != 0);
+  } while (VerificaIdIgualProduto(p->id) == 1 || ContarDigitos(p->id) != 5);
 
   printf("Nome: ");
   lerString(p->nome, sizeof(p->nome));

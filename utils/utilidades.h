@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 void limparBuffer(void);
 
 void limparTela(void);
@@ -15,3 +17,5 @@ float lerFloat(void);
 int pedirId(void);
 
 void lerString(char *buffer, int tamanho);
+
+int ContarDigitos(int numero);
