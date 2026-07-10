@@ -23,7 +23,7 @@ void PreencheDadosConsulta(Consulta *nova) {
   printf("Nome do animal: ");
   lerString(nova->animal.nome, sizeof(nova->animal.nome));
 
-  printf("\n valor: ");
+  printf("\nvalor: ");
   nova->valor = lerFloat();
 
   printf("\nData: ");
@@ -166,20 +166,6 @@ void ListarConsultas(ListaConsulta *lista) {
   }
   printf("===================================\n");
   pausar();
-}
-
-void LiberarLista(ListaConsulta *lista) {
-  NoConsulta *atual = lista->inicio;
-  NoConsulta *proximo;
-
-  while (atual != NULL) {
-    proximo = atual->proximo;
-    free(atual);
-    atual = proximo;
-  }
-
-  lista->inicio = NULL;
-  lista->tamanho = 0;
 }
 
 void SalvarLista(ListaConsulta *lista) {
