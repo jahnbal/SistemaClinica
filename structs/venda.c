@@ -258,10 +258,10 @@ void GerarRelatorioVendas(FILE *arq_vendas) {
   for (int i = 0; i < nLinhas; i++) {
     if (fread(&reg, sizeof(RegistroVenda), 1, arq_vendas) != 1)
       break;
-    matriz[i][0] = (float)reg.id_venda;
-    matriz[i][1] = (float)reg.qtd_itens;
-    matriz[i][2] = reg.total;
-    matriz[i][3] = reg.troco;
+    *(*(matriz+i) + 0) = (float)reg.id_venda;
+    *(*(matriz+i) + 1) = (float)reg.qtd_itens; 
+    *(*(matriz+i) + 2) = reg.total; 
+    *(*(matriz+i) + 3) = reg.troco; 
   }
 
   // Exibe a tabela

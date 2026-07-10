@@ -75,7 +75,6 @@ static void executarOpcaoMenu(char opcao) {
 
   case '3':
     MenuBuscar();
-    printf("Voce escolheu a opcao 3");
     break;
 
   case '4':
