@@ -182,7 +182,7 @@ void LiberarLista(ListaConsulta *lista) {
 }
 
 void SalvarLista(ListaConsulta *lista) {
-  FILE *arq_consultas = fopen(ARQUIVO_CONSULTAS, "wb");
+  FILE *arq_consultas = fopen(ARQUIVO_CONSULTAS, "ab");
   if (arq_consultas == NULL) {
     printf("Erro ao abrir arquivo para escrita.\n");
     return;
