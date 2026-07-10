@@ -38,7 +38,7 @@ static void executarOpcaoMenu(char opcao) {
   static ListaConsulta *lista = NULL;
 
   if (!lista) {
-    lista = InicializarLista();
+    InicializarLista(&lista); //  lista = InicializarLista();
   }
 
   Consulta *consulta = malloc(sizeof(Consulta));

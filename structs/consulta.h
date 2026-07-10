@@ -18,6 +18,7 @@ typedef struct {
 } Consulta;
 
 // Nó da lista encadeada
+
 typedef struct NoConsulta {
   Consulta dados;
   struct NoConsulta *proximo;
@@ -32,7 +33,7 @@ typedef struct {
 
 void PedeDadosParaBusca(Consulta *consulta);
 void PreencheDadosConsulta(Consulta *consulta);
-ListaConsulta *InicializarLista();
+void InicializarLista(ListaConsulta **lista);
 int VerificarConflito(ListaConsulta *lista, Consulta consulta);
 int InserirConsulta(ListaConsulta *lista, Consulta consulta);
 int RemoverConsulta(ListaConsulta *lista, Consulta consulta);

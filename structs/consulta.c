@@ -36,14 +36,15 @@ void PreencheDadosConsulta(Consulta *nova) {
   nova->id = lerInteiro();
 }
 
-ListaConsulta *InicializarLista() {
+void InicializarLista(ListaConsulta** lista)
+{
+    *lista = malloc(sizeof(ListaConsulta));
 
-  ListaConsulta *lista = malloc(sizeof(ListaConsulta));
-
-  lista->inicio = NULL;
-  lista->tamanho = 0;
-
-  return lista;
+    if (*lista) {
+        
+        (*lista)->inicio  = NULL;
+        (*lista)->tamanho = 0;
+    }
 }
 
 int InserirConsulta(ListaConsulta *lista, Consulta consulta) {
