@@ -217,7 +217,7 @@ int ListarProdutos() {
     contador++;
     printf("\nID: %d\n", p.id);
     printf("Nome: %s\n", p.nome);
-    printf("Preço: %.2f\n", p.preco);
+    printf("Preço: R$ %.2f\n", p.preco);
     printf("Quantidade: %d\n", p.quantidade);
     printf("---------------------------\n");
   }
@@ -252,7 +252,7 @@ int BuscarProdutoPorId(int id) {
       printf("\n---- PRODUTO ENCONTRADO ----\n");
       printf("ID: %d\n", p.id);
       printf("Nome: %s\n", p.nome);
-      printf("Preço: %.2f\n", p.preco);
+      printf("Preço: R$ %.2f\n", p.preco);
       printf("Quantidade: %d\n", p.quantidade);
       printf("-----------------------------\n");
       pausar();

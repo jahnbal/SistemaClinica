@@ -26,7 +26,7 @@ static void imprimirMenu(void) {
   printf("1 - Cadastrar Produto\n");
   printf("2 - Remover Produto\n");
   printf("3 - Atualizar Produto\n");
-  printf("4 - Listar Produto\n");
+  printf("4 - Listar Produtos\n");
   printf("5 - Voltar\n");
 }
 static void executarOpcaoMenu(char opcao) {

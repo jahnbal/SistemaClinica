@@ -139,6 +139,7 @@ Consulta *BuscarConsulta(ListaConsulta *lista, Consulta consulta) {
 void ListarConsultas(ListaConsulta *lista) {
   if (lista == NULL || lista->inicio == NULL) {
     printf("Nenhuma consulta cadastrada.\n");
+    pausar();
     return;
   }
 
@@ -163,6 +164,7 @@ void ListarConsultas(ListaConsulta *lista) {
     atual = atual->proximo;
   }
   printf("===================================\n");
+  pausar();
 }
 
 void LiberarLista(ListaConsulta *lista) {

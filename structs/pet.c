@@ -225,7 +225,7 @@ int ListarPets() {
     printf("\nID: %d\n", p.id);
     printf("Nome: %s\n", p.nome);
     printf("Idade: %d\n", p.idade);
-    printf("Peso: %.2f\n", p.peso);
+    printf("Peso: %.2f kg\n", p.peso);
     printf("ID do Cliente: %d\n", p.id_Cliente);
     printf("------------------------\n");
   }
@@ -261,7 +261,7 @@ int BuscarPetPorId(int id) {
       printf("ID: %d\n", p.id);
       printf("Nome: %s\n", p.nome);
       printf("Idade: %d\n", p.idade);
-      printf("Peso: %.2f\n", p.peso);
+      printf("Peso: %.2f kg\n", p.peso);
       printf("ID do Cliente: %d\n", p.id_Cliente);
       printf("-------------------------\n");
       pausar();
