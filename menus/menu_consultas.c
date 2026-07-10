@@ -59,14 +59,21 @@ static void executarOpcaoMenu(char opcao) {
 
   case '1':
     PreencheDadosConsulta(consulta);
-    conflito = VerificarConflito(lista, *consulta);
 
+    // PreencheDadosConsulta sinaliza falha com id == -1
+    // quando Pet ou Veterinário não são encontrados
+    if (consulta->id == -1) {
+      pausar();
+      break;
+    }
+
+    conflito = VerificarConflito(lista, *consulta);
     if (conflito == 0) {
       InserirConsulta(lista, *consulta);
-      SalvarLista(lista); // Persiste após inserção
-      printf("Consulta Marcada!\n");
+      SalvarLista(lista);
+      printf("Consulta agendada com sucesso!\n");
     } else {
-      printf("Erro, consulta indisponivel por conflito\n");
+      printf("Erro: ja existe uma consulta para esse veterinario nessa data e horario.\n");
     }
     pausar();
     break;
@@ -76,11 +83,11 @@ static void executarOpcaoMenu(char opcao) {
     buscada = BuscarConsulta(lista, *consulta);
 
     if (buscada) {
-      buscada->status |= STATUS_FINALIZADA; // Seta o bit 0 via OR
-      SalvarLista(lista);           // Persiste após atualização
-      printf("Consulta finalizada!\n");
+      buscada->status |= STATUS_FINALIZADA;
+      SalvarLista(lista);
+      printf("Consulta marcada como finalizada!\n");
     } else {
-      printf("Consulta nao encontrada\n");
+      printf("Consulta nao encontrada.\n");
     }
     pausar();
     break;
@@ -92,11 +99,11 @@ static void executarOpcaoMenu(char opcao) {
     if (buscada) {
       removida = RemoverConsulta(lista, *consulta);
       if (removida == 1) {
-        SalvarLista(lista); // Persiste após remoção
-        printf("Consulta Removida com sucesso!\n");
+        SalvarLista(lista);
+        printf("Consulta cancelada com sucesso!\n");
       }
     } else {
-      printf("Consulta nao encontrada\n");
+      printf("Consulta nao encontrada.\n");
     }
     pausar();
     break;
@@ -114,5 +121,5 @@ static void executarOpcaoMenu(char opcao) {
     break;
   }
 
-  free(consulta); // Libera o buffer temporário alocado no início de cada chamada
+  free(consulta);
 }
