@@ -23,7 +23,7 @@ void PreencheDadosConsulta(Consulta *nova) {
   printf("Nome do animal: ");
   lerString(nova->animal.nome, sizeof(nova->animal.nome));
 
-  printf("\nvalor: ");
+  printf("\n valor: ");
   nova->valor = lerFloat();
 
   printf("\nData: ");
@@ -143,9 +143,6 @@ void ListarConsultas(ListaConsulta *lista) {
     return;
   }
 
-  const char *statusStr[] = {"AGENDADA", "EM_ATENDIMENTO", "FINALIZADA",
-                             "CANCELADA"};
-
   NoConsulta *atual = lista->inicio;
 
   printf("===== LISTA DE CONSULTAS (%d) =====\n", lista->tamanho);
@@ -153,18 +150,35 @@ void ListarConsultas(ListaConsulta *lista) {
   while (atual != NULL) {
     Consulta c = atual->dados;
 
+    // Checa o bit 0 via AND para determinar o status
+    const char *statusStr = (c.status & STATUS_FINALIZADA) ? "FINALIZADA" : "AGENDADA";
+
     printf("-----------------------------------\n");
     printf("ID: %d\n", c.id);
     printf("Pet: %s\n", c.animal.nome);
     printf("Veterinario: %s\n", c.veterinario.nome);
     printf("Data: %s | Horario: %02dh00\n", c.data, c.horario);
     printf("Valor: R$ %.2f\n", c.valor);
-    printf("Status: %s\n", statusStr[c.status]);
+    printf("Status: %s\n", statusStr);
 
     atual = atual->proximo;
   }
   printf("===================================\n");
   pausar();
+}
+
+void LiberarLista(ListaConsulta *lista) {
+  NoConsulta *atual = lista->inicio;
+  NoConsulta *proximo;
+
+  while (atual != NULL) {
+    proximo = atual->proximo;
+    free(atual);
+    atual = proximo;
+  }
+
+  lista->inicio = NULL;
+  lista->tamanho = 0;
 }
 
 void SalvarLista(ListaConsulta *lista) {

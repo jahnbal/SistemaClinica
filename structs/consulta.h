@@ -5,8 +5,12 @@
 
 #define ARQUIVO_CONSULTAS "consultas.dat"
 
-// Status da consulta
-typedef enum { AGENDADA, EM_ATENDIMENTO, FINALIZADA, CANCELADA } StatusConsulta;
+// Status da consulta com bit-wise
+// bit 0 -> FINALIZADA (0 = agendada, 1 = finalizada)
+typedef unsigned int StatusConsulta;
+
+#define STATUS_AGENDADA   0u        // tudo zero
+#define STATUS_FINALIZADA (1u << 0) // bit setado    
 
 // Estrutura principal de uma consulta
 typedef struct {
@@ -40,5 +44,6 @@ int InserirConsulta(ListaConsulta *lista, Consulta consulta);
 int RemoverConsulta(ListaConsulta *lista, Consulta consulta);
 Consulta *BuscarConsulta(ListaConsulta *lista, Consulta consulta);
 void ListarConsultas(ListaConsulta *lista);
+void LiberarLista(ListaConsulta *lista);
 void SalvarLista(ListaConsulta *lista);
 void CarregarLista(ListaConsulta *lista);
