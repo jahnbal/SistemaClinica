@@ -42,3 +42,4 @@ int RemoverConsulta(ListaConsulta *lista, Consulta consulta);
 Consulta *BuscarConsulta(ListaConsulta *lista, Consulta consulta);
 void ListarConsultas(ListaConsulta *lista);
 void LiberarLista(ListaConsulta *lista);
+void SalvarLista(ListaConsulta *lista);

@@ -181,3 +181,19 @@ void LiberarLista(ListaConsulta *lista) {
   lista->inicio = NULL;
   lista->tamanho = 0;
 }
+
+void SalvarLista(ListaConsulta *lista) {
+    FILE *arq_consultas = fopen(ARQUIVO_CONSULTAS, "wb");
+    if (arq_consultas == NULL) {
+        printf("Erro ao abrir arquivo para escrita.\n");
+        return;
+    }
+
+    NoConsulta *atual = lista->inicio;
+    while (atual != NULL) {
+        fwrite(&atual->dados, sizeof(Consulta), 1, arq_consultas);
+        atual = atual->proximo;
+    }
+
+    fclose(arq_consultas);
+}

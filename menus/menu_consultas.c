@@ -38,7 +38,7 @@ static void executarOpcaoMenu(char opcao) {
   static ListaConsulta *lista = NULL;
 
   if (!lista) {
-    InicializarLista(&lista); //  lista = InicializarLista();
+    InicializarLista(&lista); //  Inicia Lista via ponteiro duplo
   }
 
   Consulta *consulta = malloc(sizeof(Consulta));
