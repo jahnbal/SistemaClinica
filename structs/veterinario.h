@@ -1,9 +1,8 @@
 #pragma once
-/*
-Cadastra/Exclui/Edita/Lista/Pesquisa
 
-*/
 #include <stdio.h>
+
+// Cadastra/Exclui/Edita/Lista/Pesquisa
 
 typedef struct {
 
@@ -23,3 +22,5 @@ int EditarVeterinario(int id);
 int ListarVeterinarios();
 
 int BuscarVeterinarioPorId(int id);
+
+int VerificaIdIgualVeterinario(int id);

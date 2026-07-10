@@ -31,7 +31,7 @@ static void imprimirMenu(void) {
   printf("5 - Voltar\n");
 }
 static void executarOpcaoMenu(char opcao) {
-  // SÓ FUNÇÕES NESSE NÍVEL
+
   int id;
   switch (opcao) {
   case '1':

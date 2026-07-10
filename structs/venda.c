@@ -4,20 +4,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* ═══════════════════════════════════════════════════════════════════════════
- *  CARRINHO — INICIALIZAÇÃO
- * ═══════════════════════════════════════════════════════════════════════════
- */
 
+// Inicializa a entidade Carrinho
 void InicializaCarrinho(Carrinho *carrinho) {
   carrinho->cabeca = NULL;
   carrinho->qtd_itens = 0;
   carrinho->total = 0.0f;
 }
 
-// CARRINHO — ADIÇÃO DE ITEM
-// malloc para cada novo nó da lista
 
+// malloc para cada novo nó da lista
 int AdicionaItemCarrinho(Carrinho *carrinho, Produto *prod, int quantidade) {
 
   BuscarProdutoPorId(prod->id);
@@ -32,7 +28,7 @@ int AdicionaItemCarrinho(Carrinho *carrinho, Produto *prod, int quantidade) {
     return 0;
   }
 
-  /* Se o produto já está no carrinho, apenas atualiza a quantidade */
+  // Se o produto já está no carrinho, apenas atualiza a quantidade
   ItemCarrinho *atual = carrinho->cabeca;
   while (atual != NULL) {
     if (atual->produto.id == prod->id) {
@@ -59,7 +55,7 @@ int AdicionaItemCarrinho(Carrinho *carrinho, Produto *prod, int quantidade) {
   novo->produto.quantidade = quantidade;
   novo->total_item = prod->preco * (float)quantidade;
 
-  /* Inserção no início da lista encadeada [LP2 — Lista Encadeada] */
+  // Inserção no início da lista encadeada
   novo->proximo = carrinho->cabeca;
   carrinho->cabeca = novo;
   carrinho->qtd_itens++;
@@ -70,7 +66,7 @@ int AdicionaItemCarrinho(Carrinho *carrinho, Produto *prod, int quantidade) {
   return 1;
 }
 
-//  CARRINHO — REMOÇÃO DE ITEM
+
 //  usa ItemCarrinho** para reescrever qualquer
 int RemoveItemCarrinhoById(Carrinho **carrinho, Produto *prod) {
   if (carrinho == NULL || *carrinho == NULL || prod == NULL)
@@ -101,8 +97,8 @@ int RemoveItemCarrinhoById(Carrinho **carrinho, Produto *prod) {
 
   return 0; // produto não encontrado no carrinho
 }
-// CARRINHO — LIMPEZA TOTAL
 
+// Limpa completamete o carrinho
 void LimpaCarrinho(Carrinho *carrinho) {
   if (carrinho == NULL)
     return;
@@ -118,12 +114,10 @@ void LimpaCarrinho(Carrinho *carrinho) {
   carrinho->total = 0.0f;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
- *  CÁLCULO RECURSIVO DO TOTAL
- *  [LP2 — Função Recursiva]
- *  Base: lista vazia → 0.0
- *  Passo: total_item do nó atual + resultado recursivo para o próximo nó
- * ═══════════════════════════════════════════════════════════════════════════
+/* 
+   CÁLCULO RECURSIVO DO TOTAL:
+    Caso Base: lista vazia → retorna 0.0
+    Passo: total_item do nó atual + resultado recursivo para o próximo nó
  */
 
 float CalculaTotalRecursivo(ItemCarrinho *item) {
@@ -132,15 +126,13 @@ float CalculaTotalRecursivo(ItemCarrinho *item) {
   return item->total_item + CalculaTotalRecursivo(item->proximo);
 }
 
-// EXIBIÇÃO DE PRODUTO — implementação padrão do tipo FuncExibeProduto
-
+// Exibe o produto implementação padrão do tipo FuncExibeProduto
 void ExibeProdutoPadrao(Produto *p) {
   printf("  %-5d | %-30s | R$ %-8.2f | Estoque: %d\n", p->id, p->nome, p->preco,
          p->quantidade);
 }
 
 // LISTAGEM DE PRODUTOS COM PONTEIRO DE FUNÇÃO
-
 void ListaProdutosVenda(FuncExibeProduto exibe, FILE *arq_produtos) {
   Produto p;
   int total = 0;
@@ -161,7 +153,6 @@ void ListaProdutosVenda(FuncExibeProduto exibe, FILE *arq_produtos) {
 }
 
 // EXIBIÇÃO DO CARRINHO
-
 void ExibeCarrinho(Carrinho *carrinho) {
   if (carrinho->qtd_itens == 0) {
     printf("  [carrinho vazio]\n\n");
@@ -225,14 +216,13 @@ int SalvaRegistroVenda(RegistroVenda *venda, FILE *arq_vendas) {
 /* ═══════════════════════════════════════════════════════════════════════════
  *  RELATÓRIO DE VENDAS COM MATRIZ DINÂMICA
  *  [LP2 — Matriz Dinâmica] aloca float** com linhas × 6 colunas:
- *    col 0 → id_venda  | col 1 → id_pet   | col 2 → id_cliente
- *    col 3 → qtd_itens | col 4 → total    | col 5 → troco
+ *    col 0 → id_venda | col 1 → qtd_itens | col 2 → total | col 3 → troco
  * ═══════════════════════════════════════════════════════════════════════════
  */
 void GerarRelatorioVendas(FILE *arq_vendas) {
 #define NUM_COLUNAS 4
 
-  /* Conta registros */
+  // Conta registros
   fseek(arq_vendas, 0, SEEK_END);
   long tam = ftell(arq_vendas);
   int nLinhas = (int)(tam / (long)sizeof(RegistroVenda));
@@ -253,7 +243,7 @@ void GerarRelatorioVendas(FILE *arq_vendas) {
   for (int i = 0; i < nLinhas; i++) {
     matriz[i] = (float *)malloc(NUM_COLUNAS * sizeof(float));
     if (matriz[i] == NULL) {
-      /* Libera o que já foi alocado antes de sair */
+      // Libera o que já foi alocado antes de sair
       for (int k = 0; k < i; k++)
         free(matriz[k]);
       free(matriz);

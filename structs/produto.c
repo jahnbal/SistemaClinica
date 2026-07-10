@@ -5,18 +5,15 @@
 /*
 Cadastra/Exclui/Edita/Lista/Pesquisa
 
-
-
 typedef struct {
 
-        int id;
-        char nome[TAM_NOME_PRODUTO];
-        float preco;
-        int quantidade;
-        int ativo; //1 ativo, 0 inativo
-// Descrição tirei pq n é usada
-// Agente ta literalmente só cadastradando e alterando
-}
+  int id;
+  char nome[TAM_NOME_PRODUTO];
+  float preco;
+  int quantidade;
+
+} Produto;
+
 */
 
 static void preencherProduto(Produto *p) {
@@ -107,8 +104,7 @@ int ExcluirProduto(int id) {
 
   while (fread(&p, sizeof(Produto), 1, arquivo) == 1) {
     if (p.id == id) {
-      encontrado =
-          1; // não copia esse pet para o temp (ou seja, ele é "excluído")
+      encontrado = 1; // não copia esse pet para o temp ou seja exclui
       continue;
     }
     fwrite(&p, sizeof(Produto), 1, temp);
@@ -222,7 +218,7 @@ int ListarProdutos() {
     contador++;
     printf("\nID: %d\n", p.id);
     printf("Nome: %s\n", p.nome);
-    printf("Preço: %.2f\n", p.preco);
+    printf("Preço: R$ %.2f\n", p.preco);
     printf("Quantidade: %d\n", p.quantidade);
     printf("---------------------------\n");
   }
@@ -257,7 +253,7 @@ int BuscarProdutoPorId(int id) {
       printf("\n---- PRODUTO ENCONTRADO ----\n");
       printf("ID: %d\n", p.id);
       printf("Nome: %s\n", p.nome);
-      printf("Preço: %.2f\n", p.preco);
+      printf("Preço: R$ %.2f\n", p.preco);
       printf("Quantidade: %d\n", p.quantidade);
       printf("-----------------------------\n");
       pausar();

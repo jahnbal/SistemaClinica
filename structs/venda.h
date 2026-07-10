@@ -1,10 +1,12 @@
-#ifndef VENDA_H
-#define VENDA_H
+#pragma once
 
 #include "pet.h"
 #include "produto.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+#define MAX_ITENS_NOTA 50
+#define NOME_ARQUIVO_VENDAS "vendas.dat"
 
 typedef void (*FuncExibeProduto)(Produto *produto);
 
@@ -12,33 +14,28 @@ typedef void (*FuncExibeProduto)(Produto *produto);
 typedef struct ItemCarrinho {
 
   Produto produto;
-
-  struct ItemCarrinho *proximo; /* próximo nó da lista encadeada */
-
+  struct ItemCarrinho *proximo; // ponteiro para o proximo da lista encadeada
   float total_item;
 
 } ItemCarrinho;
 
 // Carrinho de compras: cabeça da lista encadeada + metadados.
 typedef struct {
-  ItemCarrinho *cabeca; /* [LP2 — Lista Encadeada] cabeça da lista */
+
+  ItemCarrinho *cabeca; // cabeça da lista de fato
   int qtd_itens;
   float total;
+
 } Carrinho;
 
 /*
- * Registro persistente de venda (gravado em vendas.dat).
- * Usa vetores de tamanho fixo para as colunas da nota fiscal.
+ Registro persistente de venda (gravado em vendas.dat).
+ Usa vetores de tamanho fixo para as colunas da nota fiscal.
  */
-#define MAX_ITENS_NOTA 50
-#define NOME_ARQUIVO_VENDAS "vendas.dat"
-
 typedef struct {
   int id_venda;
-//  int id_pet;
-//  int id_cliente;
   int qtd_itens;
-  /* [LP2 — Vetores Dinâmicos] arrays paralelos dos itens vendidos */
+  // arrays paralelos dos itens vendidos
   int ids_produtos[MAX_ITENS_NOTA];
   int quantidades[MAX_ITENS_NOTA];
   float precos[MAX_ITENS_NOTA];
@@ -65,25 +62,21 @@ void LimpaCarrinho(Carrinho *carrinho);
 // compra.
 float CalculaTotalRecursivo(ItemCarrinho *item);
 
-// Lista todos os produtos disponíveis para venda, chamando a função de callback
+// Lista todos os produtos disponíveis para venda, chamando a função de auxiliar
 // exibe().
 void ListaProdutosVenda(FuncExibeProduto exibe, FILE *arq_produtos);
 
 // Implementação padrão de FuncExibeProduto
 void ExibeProdutoPadrao(Produto *prod);
 
-/* Exibe o carrinho formatado na tela */
+// Exibe o carrinho formatado na tela
 void ExibeCarrinho(Carrinho *carrinho);
 
-/* ═══════════════════════════════════════════════════════════════════════════
- *  FLUXO PRINCIPAL DE VENDA
- * ═══════════════════════════════════════════════════════════════════════════
- */
-
-/* Imprime a nota fiscal completa no terminal */
+ 
+// Imprime a nota fiscal completa no terminal
 void ImprimirNotaFiscal(Carrinho *carrinho, float valor_pago);
 
-/* Grava o RegistroVenda no arquivo vendas.dat. Retorna 1 em sucesso */
+// Grava o RegistroVenda no arquivo vendas.dat. Retorna 1 em sucesso
 int SalvaRegistroVenda(RegistroVenda *venda, FILE *arq_vendas);
 
 /*
@@ -93,5 +86,3 @@ int SalvaRegistroVenda(RegistroVenda *venda, FILE *arq_vendas);
  * Colunas: [ID venda | Qtd itens | Total | Troco]
  */
 void GerarRelatorioVendas(FILE *arq_vendas);
-
-#endif /* VENDA_H */

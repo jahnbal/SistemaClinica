@@ -5,12 +5,6 @@
 
 int main(void)
 {
-
     MenuPrincipal();
-
-
-
-
-
     return 0;
 }

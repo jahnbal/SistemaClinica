@@ -172,8 +172,7 @@ static void opcao_finalizar(Carrinho *carrinho, FILE *arq_produtos,
     index++;
   }
 
-  // Assinatura atualizada (requer alteração no venda.h e venda.c explicada
-  // abaixo)
+  
   ImprimirNotaFiscal(carrinho, valor_pago);
   SalvaRegistroVenda(&reg, arq_vendas);
 
