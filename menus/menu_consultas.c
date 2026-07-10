@@ -76,7 +76,7 @@ static void executarOpcaoMenu(char opcao) {
     buscada = BuscarConsulta(lista, *consulta);
 
     if (buscada) {
-      buscada->status = FINALIZADA; // Atualiza o status no nó da lista
+      buscada->status |= STATUS_FINALIZADA; // Seta o bit 0 via OR
       SalvarLista(lista);           // Persiste após atualização
       printf("Consulta finalizada!\n");
     } else {
