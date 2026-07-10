@@ -206,19 +206,14 @@ void ImprimirNotaFiscal(Carrinho *carrinho, float valor_pago) {
 int SalvaRegistroVenda(RegistroVenda *venda, FILE *arq_vendas) {
   fseek(arq_vendas, 0, SEEK_END);
   if (fwrite(venda, sizeof(RegistroVenda), 1, arq_vendas) != 1) {
-    perror("  ERRO ao gravar venda");
+    perror("[Erro] não foi possível gravar venda");
     return 0;
   }
   fflush(arq_vendas);
   return 1;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
- *  RELATÓRIO DE VENDAS COM MATRIZ DINÂMICA
- *  [LP2 — Matriz Dinâmica] aloca float** com linhas × 6 colunas:
- *    col 0 → id_venda | col 1 → qtd_itens | col 2 → total | col 3 → troco
- * ═══════════════════════════════════════════════════════════════════════════
- */
+
 void GerarRelatorioVendas(FILE *arq_vendas) {
 #define NUM_COLUNAS 4
 

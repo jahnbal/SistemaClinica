@@ -52,7 +52,7 @@ int VerificaIdIgualPet(int id) {
 
   while (fread(&p, sizeof(Pet), 1, arquivo) == 1) {
     if (p.id == id) {
-      printf("Esse id já foi Cadstrado, tente novamnete\n");
+      printf("Esse id já foi cadastrado, tente novamente\n");
       fclose(arquivo);
       return 1;
     }
@@ -65,7 +65,7 @@ int VerificaIdIgualPet(int id) {
 static int salvarPet(Pet *p) {
   FILE *arquivo = fopen(ARQUIVO_PETS, "ab");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -86,7 +86,7 @@ void CadastrarPet() {
 int ExcluirPet(int id) {
   FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -132,7 +132,7 @@ int ExcluirPet(int id) {
 int EditarPet(int id) {
   FILE *arquivo = fopen(ARQUIVO_PETS, "r+b");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -214,7 +214,7 @@ int EditarPet(int id) {
 int ListarPets() {
   FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -250,7 +250,7 @@ int ListarPets() {
 int BuscarPetPorId(int id) {
   FILE *arquivo = fopen(ARQUIVO_PETS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }

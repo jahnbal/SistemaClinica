@@ -2,12 +2,15 @@
 
 #include <stdio.h>
 
+#define ARQUIVO_VETS "veterinarios.dat"
+#define TAM_NOME_VETERINARIO 50
+
 // Cadastra/Exclui/Edita/Lista/Pesquisa
 
 typedef struct {
 
   int id;
-  char nome[50];
+  char nome[TAM_NOME_VETERINARIO];
 
 } Veterinario;
 

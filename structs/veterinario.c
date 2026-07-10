@@ -1,6 +1,5 @@
 #include "veterinario.h"
 #include "../utils/utilidades.h"
-#define ARQUIVO_VETS "veterinarios.dat"
 
 static void preencherVeterinario(Veterinario *v) {
   printf("---- NOVO VETERINÁRIO ----\n");
@@ -39,7 +38,7 @@ int VerificaIdIgualVeterinario(int id) {
 static int salvarVeterinario(Veterinario *v) {
   FILE *arquivo = fopen(ARQUIVO_VETS, "ab");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -60,7 +59,7 @@ void CadastrarVeterinario() {
 int ExcluirVeterinario(int id) {
   FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -105,7 +104,7 @@ int ExcluirVeterinario(int id) {
 int EditarVeterinario(int id) {
   FILE *arquivo = fopen(ARQUIVO_VETS, "r+b");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -173,7 +172,7 @@ int EditarVeterinario(int id) {
 int ListarVeterinarios() {
   FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -206,7 +205,7 @@ int ListarVeterinarios() {
 int BuscarVeterinarioPorId(int id) {
   FILE *arquivo = fopen(ARQUIVO_VETS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }

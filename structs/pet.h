@@ -1,12 +1,13 @@
 #pragma once
 
 #define ARQUIVO_PETS "pets.dat"
+#define TAM_NOME_PET 30
 
 // Cadastra/Exclui/Edita/Lista/Pesquisa
 
 typedef struct {
 
-  char nome[30];
+  char nome[TAM_NOME_PET];
   int id;
   int idade;
   float peso;

@@ -35,7 +35,7 @@ typedef struct {
 typedef struct {
   int id_venda;
   int qtd_itens;
-  // arrays paralelos dos itens vendidos
+  // arrays dos itens vendidos
   int ids_produtos[MAX_ITENS_NOTA];
   int quantidades[MAX_ITENS_NOTA];
   float precos[MAX_ITENS_NOTA];

@@ -3,6 +3,8 @@
 #include "pet.h"
 #include "veterinario.h"
 
+#define ARQUIVO_CONSULTAS "consultas.dat"
+
 // Status da consulta
 typedef enum { AGENDADA, EM_ATENDIMENTO, FINALIZADA, CANCELADA } StatusConsulta;
 

@@ -64,7 +64,7 @@ int VerificaIdIgualProduto(int id) {
 static int salvarProduto(Produto *p) {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "ab");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -86,7 +86,7 @@ void CadastrarProduto() {
 int ExcluirProduto(int id) {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -131,7 +131,7 @@ int ExcluirProduto(int id) {
 int EditarProduto(int id) {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "r+b");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -204,7 +204,7 @@ int EditarProduto(int id) {
 int ListarProdutos() {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
@@ -239,7 +239,7 @@ int ListarProdutos() {
 int BuscarProdutoPorId(int id) {
   FILE *arquivo = fopen(ARQUIVO_PRODS, "rb");
   if (arquivo == NULL) {
-    perror("[Erro] Arquivo não pode ser aberto.\n");
+    perror("[Erro] Arquivo não pôde ser aberto.\n");
     pausar();
     return 0;
   }
