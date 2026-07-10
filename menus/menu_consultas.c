@@ -33,28 +33,38 @@ static void imprimirMenu(void) {
   printf("4 - Listar Consultas\n");
   printf("5 - Voltar\n");
 }
+
 static void executarOpcaoMenu(char opcao) {
 
   static ListaConsulta *lista = NULL;
 
+  // Inicializa a lista uma única vez e carrega os dados do arquivo binário
   if (!lista) {
-    InicializarLista(&lista); //  Inicia Lista via ponteiro duplo
+    InicializarLista(&lista);
+    CarregarLista(lista);
   }
 
   Consulta *consulta = malloc(sizeof(Consulta));
+  if (!consulta) {
+    printf("Erro ao alocar memoria.\n");
+    pausar();
+    return;
+  }
+
   Consulta *buscada;
   int removida;
   int conflito = -1;
 
   switch (opcao) {
+
   case '1':
     PreencheDadosConsulta(consulta);
     conflito = VerificarConflito(lista, *consulta);
 
     if (conflito == 0) {
       InserirConsulta(lista, *consulta);
+      SalvarLista(lista); // Persiste após inserção
       printf("Consulta Marcada!\n");
-
     } else {
       printf("Erro, consulta indisponivel por conflito\n");
     }
@@ -62,33 +72,31 @@ static void executarOpcaoMenu(char opcao) {
     break;
 
   case '2':
-
     PedeDadosParaBusca(consulta);
-
     buscada = BuscarConsulta(lista, *consulta);
 
     if (buscada) {
-
+      buscada->status = FINALIZADA; // Atualiza o status no nó da lista
+      SalvarLista(lista);           // Persiste após atualização
       printf("Consulta finalizada!\n");
     } else {
-      printf("Consulta não encontrada\n");
+      printf("Consulta nao encontrada\n");
     }
     pausar();
     break;
 
   case '3':
-
     PedeDadosParaBusca(consulta);
-
     buscada = BuscarConsulta(lista, *consulta);
+
     if (buscada) {
       removida = RemoverConsulta(lista, *consulta);
-
       if (removida == 1) {
-        printf("Consulta Removida com suceso!\n");
+        SalvarLista(lista); // Persiste após remoção
+        printf("Consulta Removida com sucesso!\n");
       }
     } else {
-      printf("Consulta não encontrada\n");
+      printf("Consulta nao encontrada\n");
     }
     pausar();
     break;
@@ -105,4 +113,6 @@ static void executarOpcaoMenu(char opcao) {
     pausar();
     break;
   }
+
+  free(consulta); // Libera o buffer temporário alocado no início de cada chamada
 }
