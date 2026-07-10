@@ -228,7 +228,7 @@ void GerarRelatorioVendas(FILE *arq_vendas) {
   }
 
   // Aloca vetor dinâmico de ponteiros (linhas)
-  float **matriz = (float **)malloc(nLinhas * sizeof(float *));
+  float **matriz = malloc(nLinhas * sizeof(float *));
   if (matriz == NULL) {
     printf("  ERRO: Memoria insuficiente para o relatorio.\n");
     return;
@@ -236,7 +236,7 @@ void GerarRelatorioVendas(FILE *arq_vendas) {
 
   // Aloca cada linha (vetor de NUM_COLUNAS floats)
   for (int i = 0; i < nLinhas; i++) {
-    matriz[i] = (float *)malloc(NUM_COLUNAS * sizeof(float));
+    matriz[i] = malloc(NUM_COLUNAS * sizeof(float));
     if (matriz[i] == NULL) {
       // Libera o que já foi alocado antes de sair
       for (int k = 0; k < i; k++)

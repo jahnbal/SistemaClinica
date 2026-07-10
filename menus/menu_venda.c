@@ -11,7 +11,7 @@ static void executarOpcao(char opcao, Carrinho *carrinho, FILE *arq_produtos,
 
 // Função auxiliar para buscar produto e retorná-lo alocado dinamicamente
 static Produto *buscarProdutoVenda(FILE *arq, int id) {
-  Produto *p = (Produto *)malloc(sizeof(Produto));
+  Produto *p = malloc(sizeof(Produto));
   if (!p)
     return NULL;
 

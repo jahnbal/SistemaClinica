@@ -48,7 +48,7 @@ void InicializarLista(ListaConsulta **lista) {
 
 int InserirConsulta(ListaConsulta *lista, Consulta consulta) {
 
-  NoConsulta *novo = (NoConsulta *)malloc(sizeof(NoConsulta));
+  NoConsulta *novo = malloc(sizeof(NoConsulta));
   if (novo == NULL) {
     printf("Erro ao alocar memoria para o novo no.\n");
     return 0;
@@ -206,7 +206,7 @@ void CarregarLista(ListaConsulta *lista) {
   Consulta dados;
 
   while (fread(&dados, sizeof(Consulta), 1, arq_consultas) == 1) {
-    NoConsulta *novo = (NoConsulta *)malloc(sizeof(NoConsulta));
+    NoConsulta *novo = malloc(sizeof(NoConsulta));
     if (novo == NULL) {
       printf("Erro ao alocar memória.\n");
       break;
