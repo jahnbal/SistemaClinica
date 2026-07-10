@@ -12,7 +12,6 @@ typedef struct {
   int id;
   int idade;
   float peso;
-  int id_Cliente; // relação de ownership com o cliente
 
 } Pet;
 */
@@ -37,9 +36,6 @@ static void preencherPet(Pet *p) {
 
   printf("Peso: ");
   p->peso = lerFloat();
-
-  printf("ID do Cliente: ");
-  p->id_Cliente = lerInteiro();
 }
 
 int VerificaIdIgualPet(int id) {
@@ -149,7 +145,6 @@ int EditarPet(int id) {
       printf("Nome atual: %s\n", p.nome);
       printf("Idade atual: %d\n", p.idade);
       printf("Peso atual: %.2f\n", p.peso);
-      printf("ID do Cliente atual: %d\n", p.id_Cliente);
 
       char opcao;
       do {
@@ -157,7 +152,6 @@ int EditarPet(int id) {
         printf("1 - Nome\n");
         printf("2 - Idade\n");
         printf("3 - Peso\n");
-        printf("4 - ID do Cliente\n");
         printf("0 - Finalizar edição\n");
         printf("Escolha: ");
         opcao = getOpcao();
@@ -174,10 +168,6 @@ int EditarPet(int id) {
         case '3':
           printf("Novo peso: ");
           p.peso = lerFloat();
-          break;
-        case '4':
-          printf("Novo ID do Cliente: ");
-          p.id_Cliente = lerInteiro();
           break;
         case '0':
           printf("\nFinalizando edição...\n");
@@ -228,7 +218,6 @@ int ListarPets() {
     printf("Nome: %s\n", p.nome);
     printf("Idade: %d\n", p.idade);
     printf("Peso: %.2f kg\n", p.peso);
-    printf("ID do Cliente: %d\n", p.id_Cliente);
     printf("------------------------\n");
   }
 
@@ -264,7 +253,6 @@ int BuscarPetPorId(int id) {
       printf("Nome: %s\n", p.nome);
       printf("Idade: %d\n", p.idade);
       printf("Peso: %.2f kg\n", p.peso);
-      printf("ID do Cliente: %d\n", p.id_Cliente);
       printf("-------------------------\n");
       pausar();
       break;

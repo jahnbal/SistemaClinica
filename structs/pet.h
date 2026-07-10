@@ -10,7 +10,6 @@ typedef struct {
   int id;
   int idade;
   float peso;
-  int id_Cliente; // relação de ownership com o cliente
 } Pet;
 
 void CadastrarPet();
