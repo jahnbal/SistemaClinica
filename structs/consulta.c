@@ -197,3 +197,38 @@ void SalvarLista(ListaConsulta *lista) {
 
     fclose(arq_consultas);
 }
+
+void CarregarLista(ListaConsulta* lista)
+{
+    FILE* arq_consultas = fopen(ARQUIVO_CONSULTAS, "rb");
+    if (arq_consultas == NULL) {
+        return; // arquivo ainda não existe, sem erro
+    }
+
+    Consulta dados;
+
+    while (fread(&dados, sizeof(Consulta), 1, arq_consultas) == 1) {
+        NoConsulta* novo = (NoConsulta*)malloc(sizeof(NoConsulta));
+        if (novo == NULL) {
+            printf("Erro ao alocar memória.\n");
+            break;
+        }
+
+        novo->dados = dados;
+        novo->proximo = NULL;
+
+        if (lista->inicio == NULL) {
+            lista->inicio = novo;
+        } else {
+            NoConsulta* atual = lista->inicio;
+            while (atual->proximo != NULL) {
+                atual = atual->proximo;
+            }
+            atual->proximo = novo;
+        }
+
+        lista->tamanho++;
+    }
+
+    fclose(arq_consultas);
+}
